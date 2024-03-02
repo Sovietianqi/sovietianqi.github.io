@@ -1,0 +1,1358 @@
+
+搜索标志
+Reset all
+实验
+115.0.1901.189
+WARNING: EXPERIMENTAL FEATURES AHEAD! By enabling these features, you could lose browser data or compromise your security or privacy. Enabled features apply to all users of this browser. If you are an enterprise admin you should not be using these flags in production.
+Temporarily unexpire M113 flags.
+Temporarily unexpire flags that expired as of M113. These flags will be removed soon. – Mac, Windows, Linux, Android
+
+#temporary-unexpire-flags-m113
+
+Default
+Temporarily unexpire M114 flags.
+Temporarily unexpire flags that expired as of M114. These flags will be removed soon. – Mac, Windows, Linux, Android
+
+#temporary-unexpire-flags-m114
+
+Default
+Override software rendering list
+Overrides the built-in software rendering list and enables GPU-acceleration on unsupported system configurations. – Mac, Windows, Linux, Android
+
+#ignore-gpu-blocklist
+
+已禁用
+Accelerated 2D canvas
+Enables the use of the GPU to perform 2d canvas rendering instead of using software rendering. – Mac, Windows, Linux, Android
+
+#disable-accelerated-2d-canvas
+
+已启用
+Partial swap
+Sets partial swap behavior. – Mac, Windows, Linux, Android
+
+#ui-disable-partial-swap
+
+已启用
+WebRTC hardware video decoding
+Support in WebRTC for decoding video streams using platform hardware. – Android
+
+#disable-webrtc-hw-decoding
+
+已启用
+WebRTC hardware video encoding
+Support in WebRTC for encoding video streams using platform hardware. – Android
+
+#disable-webrtc-hw-encoding
+
+已启用
+Show Autofill predictions
+Annotates web forms with Autofill field type predictions as placeholder text. – Mac, Windows, Linux, Android
+
+#show-autofill-type-predictions
+
+Default
+Smooth Scrolling
+Animate smoothly when scrolling page content. – Windows, Linux, Android
+
+#smooth-scrolling
+
+Default
+Experimental QUIC protocol
+Enable experimental QUIC protocol support. – Mac, Windows, Linux, Android
+
+#enable-quic
+
+Default
+Latest stable JavaScript features
+Some web pages use legacy or non-standard JavaScript extensions that may conflict with the latest JavaScript features. This flag allows disabling support of those features for compatibility with such pages. – Mac, Windows, Linux, Android
+
+#disable-javascript-harmony-shipping
+
+已启用
+Experimental JavaScript
+Enable web pages to use experimental JavaScript features. – Mac, Windows, Linux, Android
+
+#enable-javascript-harmony
+
+已禁用
+Experimental JavaScript shared memory features
+Enable web pages to use non-standard, experimental JavaScript shared memory features. Their use requires the same HTTP headers required by cross-thread usage of SharedArrayBuffers (i.e. COOP and COEP). – Mac, Windows, Linux, Android
+
+#enable-javascript-experimental-shared-memory
+
+Default
+Experimental WebAssembly
+Enable web pages to use experimental WebAssembly features. – Mac, Windows, Linux, Android
+
+#enable-experimental-webassembly-features
+
+已禁用
+Experimental WebAssembly JavaScript Promise Integration (JSPI)
+Enable web pages to use experimental WebAssembly JavaScript Promise Integration (JSPI) API. – Mac, Windows, Linux, Android
+
+#enable-experimental-webassembly-stack-switching
+
+Default
+WebAssembly baseline compiler
+Enables WebAssembly baseline compilation and tier up. – Mac, Windows, Linux, Android
+
+#enable-webassembly-baseline
+
+Default
+WebAssembly lazy compilation
+Enables lazy (JIT on first call) compilation of WebAssembly modules. – Mac, Windows, Linux, Android
+
+#enable-webassembly-lazy-compilation
+
+Default
+WebAssembly tiering
+Enables tiered compilation of WebAssembly (will tier up to TurboFan if #enable-webassembly-baseline is enabled). – Mac, Windows, Linux, Android
+
+#enable-webassembly-tiering
+
+Default
+Future V8 VM features
+This enables upcoming and experimental V8 VM features. This flag does not enable experimental JavaScript features. – Mac, Windows, Linux, Android
+
+#enable-future-v8-vm-features
+
+Default
+GPU rasterization
+Use GPU to rasterize web content. – Mac, Windows, Linux, Android
+
+#enable-gpu-rasterization
+
+Default
+Experimental Web Platform features
+Enables experimental Web Platform features that are in development. – Mac, Windows, Linux, Android
+
+#enable-experimental-web-platform-features
+
+已禁用
+Hardware-accelerated video decode
+Hardware-accelerated video decode where available. – Mac, Windows, Linux, Android
+
+#disable-accelerated-video-decode
+
+已启用
+Hardware-accelerated video encode
+Hardware-accelerated video encode where available. – Mac, Windows, Android
+
+#disable-accelerated-video-encode
+
+已启用
+Show autofill signatures.
+Annotates web forms with Autofill signatures as HTML attributes. Also marks password fields suitable for password generation. – Mac, Windows, Linux, Android
+
+#enable-show-autofill-signatures
+
+已禁用
+WebGL Draft Extensions
+Enabling this option allows web applications to access the WebGL extensions that are still in draft status. – Mac, Windows, Linux, Android
+
+#enable-webgl-draft-extensions
+
+已禁用
+Zero-copy rasterizer
+Raster threads write directly to GPU memory associated with tiles. – Mac, Windows, Linux, Android
+
+#enable-zero-copy
+
+Default
+Vulkan
+Use vulkan as the graphics backend. – Windows, Linux, Android
+
+#enable-vulkan
+
+Default
+Threaded scrolling
+Threaded handling of scroll-related input events. Disabling this will force all such scroll events to be handled on the main thread. Note that this can dramatically hurt scrolling performance of most websites and is intended for testing purposes only. – Mac, Windows, Linux, Android
+
+#disable-threaded-scrolling
+
+已启用
+Isolate additional origins
+Requires dedicated processes for an additional set of origins, specified as a comma-separated list. – Mac, Windows, Linux, Android
+
+#isolate-origins
+
+已禁用
+Disable site isolation
+Disables site isolation (SitePerProcess, IsolateOrigins, etc). Intended for diagnosing bugs that may be due to out-of-process iframes. Opt-out has no effect if site isolation is force-enabled using a command line switch or using an enterprise policy. Caution: this disables important mitigations for the Spectre CPU vulnerability affecting most computers. – Mac, Windows, Linux, Android
+
+#site-isolation-trial-opt-out
+
+Default
+Allow invalid certificates for resources loaded from localhost.
+Allows requests to localhost over HTTPS even when an invalid certificate is presented. – Mac, Windows, Linux, Android
+
+#allow-insecure-localhost
+
+已禁用
+Bypass user engagement checks
+Bypasses user engagement checks for displaying app banners, such as requiring that users have visited the site before and that the banner hasn't been shown recently. This allows developers to test that other eligibility requirements for showing app banners, such as having a manifest, are met. – Mac, Windows, Linux, Android
+
+#bypass-app-banner-engagement-checks
+
+已禁用
+Default offline page for PWAs
+Shows customised default offline page when web app is offline. – Mac, Windows, Linux, Android
+
+#enable-pwas-default-offline-page
+
+Default
+Block scripts loaded via document.write
+Disallows fetches for third-party parser-blocking scripts inserted into the main frame via document.write. – Mac, Windows, Linux, Android
+
+#disallow-doc-written-script-loads
+
+Default
+Force UI direction
+Explicitly force the UI to left-to-right (LTR) or right-to-left (RTL) mode, overriding the default direction of the UI language. – Mac, Windows, Linux, Android
+
+#force-ui-direction
+
+Default
+Force text direction
+Explicitly force the per-character directionality of UI text to left-to-right (LTR) or right-to-left (RTL) mode, overriding the default direction of the character language. – Mac, Windows, Linux, Android
+
+#force-text-direction
+
+Default
+Experimental accessibility language detection
+Enable language detection for in-page content which is then exposed to assistive technologies such as screen readers. – Mac, Windows, Linux, Android
+
+#enable-experimental-accessibility-language-detection
+
+已禁用
+Experimental accessibility language detection for dynamic content
+Enable language detection for dynamic content which is then exposed to assistive technologies such as screen readers. – Mac, Windows, Linux, Android
+
+#enable-experimental-accessibility-language-detection-dynamic
+
+已禁用
+Experimental Web Payments API features
+Enable experimental Web Payments API features – Mac, Windows, Linux, Android
+
+#enable-web-payments-experimental-features
+
+Default
+Fill passwords on account selection
+Filling of passwords when an account is explicitly selected by the user rather than autofilling credentials on page load. – Mac, Windows, Linux, Android
+
+#fill-on-account-select
+
+Default
+Generic Sensor Extra Classes
+Enables an extra set of sensor classes based on Generic Sensor API, which expose previously unavailable platform features, i.e. AmbientLightSensor and Magnetometer interfaces. – Mac, Windows, Linux, Android
+
+#enable-generic-sensor-extra-classes
+
+Default
+Omnibox Fuzzy URL Suggestions
+Enables URL suggestions for inputs that may contain typos. – Mac, Windows, Linux, Android
+
+#omnibox-fuzzy-url-suggestions
+
+Default
+Omnibox discard temporary input on tab switch
+Discards temporary input in the omnibox when switching tabs. – Mac, Windows, Linux, Android
+
+#omnibox-discard-temporary-input-on-tab-switch
+
+Default
+Enable command line on non-rooted devices
+Enable reading command line file on non-rooted devices (DANGEROUS). – Android
+
+#enable-command-line-on-non-rooted-devices
+
+Default
+Force color profile
+Forces Microsoft Edge to use a specific color profile instead of the color of the window's current monitor, as specified by the operating system. – Mac, Windows, Linux, Android
+
+#force-color-profile
+
+Default
+Forced Colors
+Enables forced colors mode for web content. – Mac, Windows, Linux, Android
+
+#forced-colors
+
+Default
+Microsoft Edge heap profiler start mode.
+Starts heap profiling service that records sampled memory allocation profile having each sample attributed with a callstack. The sampling resolution is controlled with --memlog-sampling-rate flag. Recorded heap dumps can be obtained at edge://tracing [category:memory-infra] and edge://memory-internals. This setting controls which processes will be profiled since their start. To profile any given process at a later time use edge://memory-internals page. – Mac, Windows, Linux, Android
+
+#memlog
+
+Disabled
+Heap profiling sampling interval (in bytes).
+Heap profiling service uses Poisson process to sample allocations. Default value for the interval between samples is 1000000 (1MB). This results in low noise for large and/or frequent allocations [size * frequency >> 1MB]. This means that aggregate numbers [e.g. total size of malloc-ed objects] and large and/or frequent allocations can be trusted with high fidelity. Lower intervals produce higher samples resolution, but come at a cost of higher performance overhead. – Mac, Windows, Linux, Android
+
+#memlog-sampling-rate
+
+Default
+Heap profiling stack traces type.
+By default heap profiling service records native stacks. A post-processing step is required to symbolize the stacks. 'Native with thread names' adds the thread name as the first frame of each native stack. It's also possible to record a pseudo stack using trace events as identifiers. It's also possible to do a mix of both. – Mac, Windows, Linux, Android
+
+#memlog-stack-mode
+
+Default
+Omnibox UI Max Autocomplete Matches
+Changes the maximum number of autocomplete matches displayed in the Omnibox UI. – Mac, Windows, Linux, Android
+
+#omnibox-ui-max-autocomplete-matches
+
+Default
+Omnibox Dynamic Max Autocomplete
+Configures the maximum number of autocomplete matches displayed in the Omnibox UI dynamically based on the number of URL matches. – Mac, Windows, Linux, Android
+
+#omnibox-dynamic-max-autocomplete
+
+Default
+Block insecure private network requests.
+Prevents non-secure contexts from making subresource requests to more-private IP addresses. – Mac, Windows, Linux, Android
+
+#block-insecure-private-network-requests
+
+Default
+Respect the result of Private Network Access preflights
+Enables sending Private Network Access preflights ahead of requests to more-private IP addresses. These preflight requests must succeed in order for the request to proceed. – Mac, Windows, Linux, Android
+
+#private-network-access-respect-preflight-results
+
+Default
+Parallel downloading
+Enable parallel downloading to accelerate download speed. – Mac, Windows, Linux, Android
+
+#enable-parallel-downloading
+
+Default
+Enable storage pressure Event
+If enabled, Microsoft Edge will dispatch a DOM event, informing applications about storage pressure (low disk space) – Mac, Windows, Linux, Android
+
+#enable-storage-pressure-event
+
+Default
+Enable network logging to file
+Enables network logging to a file named netlog.json in the user data directory. The file can be imported into edge://net-internals. – Mac, Windows, Linux, Android
+
+#enable-network-logging-to-file
+
+已禁用
+Insecure origins treated as secure
+Treat given (insecure) origins as secure origins. Multiple origins can be supplied as a comma-separated list. Origins must have their protocol specified e.g. "http://example.com". For the definition of secure contexts, see https://w3c.github.io/webappsec-secure-contexts/ – Mac, Windows, Linux, Android
+
+#unsafely-treat-insecure-origin-as-secure
+
+已禁用
+Load Edge Authentication Manager only after browser startup
+If enabled, ensures that actual Edge Authentication Manager is loaded only after browser startup. – Mac, Windows, Linux, Android
+
+#edge-auth-manager-delay-load
+
+Default
+Automatic HTTPS
+Enables support for Automatic HTTPS, which switches connections to websites from HTTP to HTTPS. The feature can then be turned on/off or further configured at edge://settings/privacy. – Mac, Windows, Linux, Android
+
+#edge-automatic-https
+
+Default
+Show block option in autoplay settings
+If enabled, block will appear as an option in media autoplay settings. – Mac, Windows, Linux, Android
+
+#edge-autoplay-user-setting-block-option
+
+Default
+Cloud Messaging service
+Enable the Cloud Messaging service for receiving invalidation message. – Mac, Windows, Linux, Android
+
+#edge-cloud-messaging-service
+
+Default
+Enable Back/Forward Cache
+Enables Back/Forward Caching with associated parameters to facilitate testing on Edge. – Mac, Windows, Linux, Android
+
+#edge-enable-bfcache-features
+
+已禁用
+Edge SDCH (ZSDCH Content-Encoding)
+Enables Edge Sdch (ZSDCH Content-Encoding) support. – Mac, Windows, Linux, Android
+
+#edge-enable-zsdch-content-encoding
+
+Default
+Experimental Tracking Prevention Features
+Enables upcoming and experimental improvements to Tracking Prevention. – Mac, Windows, Linux, Android
+
+#edge-experimental-tracking-prevention-features
+
+Default
+Enable Drop
+A simple way to send files and notes across all your mobile and PC devices. – Mac, Windows, Linux, Android
+
+#edge-drop
+
+Default
+Enable Drop's custom notification
+This flag allows sending Drop's custom notification. It helps to keep Drop messages in sync among devices. – Mac, Windows, Linux, Android
+
+#edge-drop-push-notification
+
+Default
+Enable experimentation 'full' mode
+If enabled and 'ExperimentationAndConfigurationServiceControl' group policy was not set, Edge client will behave as if the group policy was set to 'full mode', which will enable experimentation on the client. – Mac, Windows, Linux, Android
+
+#edge-optin-experimentation
+
+Default
+Do not show guided switch for https://login.microsoftonline.com/*
+If disabled and if the path following https://login.microsoftonline.com/ is not common, consumers, organizations, or an MSA/AAD tenant ID then guided switch will not be shown. If enabled, guided switch will be shown to AAD account type – Mac, Windows, Linux, Android
+
+#edge-guided-switch-microsoft-online-login
+
+Default
+Show guided switch to AAD profile for https://login.microsoftonline.com/organizations/*
+If enabled, when navigating to https://login.microsoftonline.com/organizations/* the user will be prompted to switch to an AAD profile if not in one already. If disabled, no guided switch will be prompted. – Mac, Windows, Linux, Android
+
+#edge-guided-switch-microsoft-online-organizations-login
+
+Default
+Enable history accelerator to open the full page
+Enables the History keyboard shortcut to open the full page instead of the hub. – Mac, Windows, Linux, Android
+
+#edge-history-accelerator-override
+
+Default
+Enable Linked Account
+Enables toggle to control Linked Account – Mac, Windows, Linux, Android
+
+#edge-linked-account-info
+
+Default
+Omnibox UI Hide Steady-State URL Scheme
+In the omnibox, hide the scheme from steady state displayed URLs. It is restored during editing. – Mac, Windows, Linux, Android
+
+#edge-omnibox-ui-hide-steady-state-url-scheme
+
+Default
+Omnibox UI Hide Steady-State URL Trivial Subdomains
+In the omnibox, hide trivial subdomains from steady state displayed URLs. Hidden portions are restored during editing. – Mac, Windows, Linux, Android
+
+#edge-omnibox-ui-hide-steady-state-url-trivial-subdomains
+
+Default
+TLS Kyber Confidentiality
+This option enables use of hybrid post-quantum (Kyber768 + NIST-P384) key exchange when establishing a TLS connection. – Mac, Windows, Linux, Android
+
+#edge-post-quantum-kyber
+
+Default
+Reduce the minor version in the Edge User-Agent string
+Reduce the minor, build, and patch versions in the Edge User-Agent string. The version in the User-Agent string will be reported as Edg/<major_version>.0.0.0. – Mac, Windows, Linux, Android
+
+#edge-reduce-user-agent-minor-version
+
+Default
+Project Robin experiment
+If enabled, Project Robin features are enabled. – Mac, Windows, Linux, Android
+
+#edge-robin
+
+Default
+Sound content setting
+Enable site-wide muting in content settings and tab strip context menu. – Mac, Windows, Linux, Android
+
+#edge-sound-content-setting
+
+Default
+Microsoft Edge tracking prevention
+Enables tracking prevention in Microsoft Edge – Mac, Windows, Linux, Android
+
+#edge-tracking-prevention
+
+Default
+Microsoft Root Store
+Enable use of Microsoft Root Store over platform roots. On some platforms this may also enable Cert Verifier. – Linux, Android
+
+#edge-microsoft-root-store-enabled
+
+Default
+Enable Experimentation Payload Fetch on startup
+Enables experimentation payload fetch on startup and every time the app enters foreground, regardless of the time passed in between the fetches. – Mac, Windows, Linux, Android
+
+#edge-disable-variations-seed-fetch-throttling
+
+已禁用
+Edge Android Use New SmartScreen SDK
+If enabled, Edge Android will switch to new SmartScreen SDK – Android
+
+#edge-android-use-smartscreen-sdk
+
+Default
+Microsoft Pay card upload
+If enabled, Microsoft account credit card will be synced with server. – Android
+
+#edge-autofill-cardroaming
+
+Default
+New wording for bing news notification upsell
+If enabled, new wording will be applied to bing news notification upsell. – Android
+
+#edge-bing-notification-new-upsell-wording
+
+Default
+block video ads
+If enabled, user can turn on Ad Blocker to block video ads – Android
+
+#edge-block-video-ads
+
+Default
+Edge tag ads
+If enabled, there will be 'Block Ads' in context menu – Android
+
+#edge-tag-ads
+
+Default
+Edge tag ads silently block
+If enabled, we will directly block ads when user click block ads – Android
+
+#edge-tag-ads-silent
+
+Default
+Shopping site Coupons
+If enabled, coupons will display in shopping site – Android
+
+#edge-coupons-enable
+
+Default
+Coupon Icon Animation
+When enabled, the coupon icon on the address bar will wiggle when users first visit a shopping site in a session. – Android
+
+#edge-android-coupon-icon-animation
+
+Default
+Uqu voice search
+If enabled, uqu features would be applied to android voice search – Android
+
+#edge-uqu-enable
+
+Default
+Daily image information search
+If enabled, daily image information search will be available – Android
+
+#edge-daily-image-enable
+
+Default
+AS search history enable
+If enabled, as search history sync pc – Android
+
+#edge-as-search-history-enable
+
+Default
+Edge bing entity navigation enable
+If enabled, navigate to official site for bing entity result – Android
+
+#edge-bing-search-entity-navigation-enable
+
+Default
+Trending Search
+If enabled, Trending search will be available – Android
+
+#edge-trending-search-enable
+
+Default
+Adjust bing mini-answer rank
+If enabled, bing mini-answer would be ranked by score. – Android
+
+#edge-bing-mini-answer-rank
+
+Default
+Mobile direct site navigation
+If enabled, the mobile direct site navigation would replace the bing mini-answer showed in omnibox. – Android
+
+#edge-direct_site-navigation
+
+Default
+Mobile limit search suggestions
+If enabled, limit the search suggestion matches of the mobile omnibox. – Android
+
+#edge-mobile-limit-search-suggestions
+
+Default
+Mobile auto complete URL suggestions
+If enabled, auto complete URL suggestions of Direct Site Navigation. – Android
+
+#edge-mobile-auto-complete-url-suggestions
+
+Default
+SMS Code Based Sign In
+If your account meets the conditions, enbale this flag can use sms code sign in – Android
+
+#edge-sms-code-based-sign-in
+
+Default
+Trending Hint
+If enabled, Trending hint will be shown in address bar – Android
+
+#edge-trending-hint-enable
+
+Default
+New omnibox auto suggest UX
+If enabled, the new omnibox auto suggests UX shows. – Android
+
+#edge-omnibox-autosuggest-new-ux
+
+Default
+Bing Search Widget Promote
+If enabled, Popup to promote Bing search widget can show in app – Android
+
+#edge-bing-search-widget-promote-enable
+
+Default
+Edge import passwords
+If enabled, import passwords will be available – Android
+
+#edge-import-passwords-mobile-enable
+
+Default
+badge show blue point style
+If enabled, badge icon will show blue point – Android
+
+#edge-badge-blue-point-style
+
+Default
+badge show red point style
+If enabled, badge icon will show red point – Android
+
+#edge-badge-red-point-style
+
+Default
+badge show blue text style
+If enabled, badge icon will show blue text – Android
+
+#edge-badge-blue-text-style
+
+Default
+badge show red text style
+If enabled, badge icon will show red text – Android
+
+#edge-badge-red-text-style
+
+Default
+Upgrade alert in App
+If enabled, upgrade alert feature will be shown – Android
+
+#edge-android-upgrade-alert-in-app-enable
+
+Default
+Read aloud red dot upsell in overflow menu
+If enabled, red dot for Read aloud upsell in the overflow menu will be shown – Android
+
+#edge-Android-read-aloud-overflow-menu-red-dot
+
+Default
+Read aloud domain-based popup
+If enabled, Read aloud popup will be available when browsing certain domains – Android
+
+#edge-Android-read-aloud-domainbased-popup
+
+Default
+Read aloud bottom sheet upsell
+If enabled, a bottom sheet upsell for Read aloud will be shown on NTP for upgraded users. – Android
+
+#edge-Android-read-aloud-bottomsheet-popup
+
+Default
+Read aloud preload
+If enabled, read aloud preload next utterance to reduce interval time. – Android
+
+#edge-Android-read-aloud-preload
+
+Default
+Try the Prism Collections beta
+Discover new content inspired by your collections and the web. Your existing collections won't be migrated, but that feature is coming soon and you can switch back at any time. – Android
+
+#edge-prism-collection-mobile-enable
+
+Default
+Bing Notification on Mobile
+If enabled, bing is able to push news notifications to this device – Android
+
+#edge-mobile-bing-notification
+
+Default
+Mobile Wallet
+when enabled, user can see the mobile wallet entry – Android
+
+#edge-mobile-wallet-entry
+
+Default
+New NTP Experience
+If enabled, the polished new ntp experience will be provided – Android
+
+#edge-new-ntp-experience-enabled
+
+Default
+In Process GPU startup flag
+If enabled, the --in-process-gpu command line params will be provided – Android
+
+#edge-in-process-gpu
+
+Default
+Immersive NTP
+If enabled, the new NTP with immersive background, fluid transition animations and revamped layout options will be provided. – Android
+
+#edge-immersive-ntp
+
+Default
+Block opening external apps
+When enabled, user can decide if Microsoft Edge will block opening external apps – Android
+
+#edge-external-app-blocker
+
+Default
+Read aloud red dot upsell in reading mode
+If enabled, red dot and tooltip for Read aloud upsell in the reading mode will be shown. – Android
+
+#edge-Android-read-aloud-reading-mode-red-dot
+
+Default
+Translator browser menu entry
+When enabled, translate button will show in the browser menu and a translator tool bar will show if user adopt translator. – Android
+
+#edge-translator-menu-entry
+
+Default
+Dynamic Default Ntp Layout
+If enabled, the default ntp layout will be uncertain on china market – Android
+
+#edge-dynamic-default-ntp-layout
+
+Default
+PPLT for non ntp page
+If enabled, we will see the snapshot of the non ntp page during the startup phase. – Android
+
+#edge-pplt-for-non-ntp
+
+Default
+Overflow menu survey
+If enabled, a survey dialog will be shown to users. – Android
+
+#edge-overflow-menu-survey
+
+Default
+New Dark Mode
+If enabled, force dark mode can be applied to all web pages when possible. – Android
+
+#edge-Android-new-dark-mode
+
+Default
+Resume to NTP on startup
+If enabled, a new tab page will be opened after a period of inactivity. – Android
+
+#edge-resume-to-ntp-android
+
+Default
+Navigation Revamp Feature Type
+If enabled, change navigation tool bar type. – Android
+
+#edge-navigation-revamp-android
+
+Default
+Enable dex2oat on Android
+If enabled, dex2oat will be executed on Edge start period – Android
+
+#edge-dex2oat-android
+
+Default
+Enable NTP snapshot capture on Android
+If enabled, NTP snapshot will be captured, and show snapshot first during Edge app startup phase – Android
+
+#edge-ntp-snapshot-android
+
+Default
+Enable new feedback rating style on Android
+If enabled,use new feedback rating style – Android
+
+#edge-feedback-rating-ui-android
+
+Default
+Enable new adding top site experience
+If enabled, If enabled, adding top site page will show new design. – Android
+
+#edge-add-top-site-refinement-android
+
+Default
+Enable new topsites design including mini app
+If enabled, mini app will be added to top sites and some top sites related logic has also changed. – Android
+
+#edge-topsites-refinement-android
+
+Default
+Enable NTP topsites v2
+If enabled, NTP topsites will change including: new topsites item style on NTP, new edit mode for topsites on NTP, most visited top sites are manged into frequently visited item, new defination for add item on NTP topsites. All of above changes are based on the new topsites data model. – Android
+
+#edge-topsites-revamp-android
+
+Default
+New Bing always show on toolbar
+If enabled, New Bing will show in the center of your toolbar – Android
+
+#edge-show-sydchat-android
+
+Default
+New Bing Preload
+If enabled, New Bing will Preload to accelerate show experience – Android
+
+#edge-syd-chat-preload
+
+Default
+New Bing always show on toolbar(discover)
+If enabled, New Bing will show in the center of your toolbar(discover) – Android
+
+#edge-show-discover-android
+
+Default
+New Bing always show on toolbar(discover v2)
+If enabled, New Bing will show in the center of your toolbar(discover v2) – Android
+
+#edge-show-discover-v2-android
+
+Default
+New Bing always show on toolbar for all user
+If enabled, New Bing will show in the center of toolbar for all user – Android
+
+#edge-codex-for-all-android
+
+Default
+Discover Chat Intent Detection
+If enabled, Discover Chat will enable intent detection API and clean context when user asking non-contextual questions – Android
+
+#edge-discover-chat-intent-detection-android
+
+Default
+Enable writing assistant on Android
+If enabled, you can enter writing assistant page by home camera icon – Android
+
+#edge-writing-assistant-android
+
+Default
+Enable writing assistant upsell on Android
+If enabled, will show the writing assistant upsell – Android
+
+#edge-writing-assistant-upsell-android
+
+Default
+Enable weather notification on Android
+If enabled, you can receive weather notification when you open weather switch – Android
+
+#edge-weather-notification-android
+
+Default
+Edge surf game new share feature switch
+If enabled, a new share feature for surf game will be available – Android
+
+#edge-surf-game-share-enable
+
+Default
+Re-sync data to this device
+When enabled, you can try re-syncing if you have problems syncing your browsing data to this device. – Android
+
+#edge-resync-data
+
+Default
+Unified Consent Sync
+If enabled, it will sync data across all signed in Microsoft apps – Android
+
+#edge-unified-consent
+
+Default
+Sync ANH push notification
+If enabled, Sync will use ANH push notification – Android
+
+#edge-mobile-sync-anh-enable
+
+Default
+Sync upsell for AAD users
+Show sync opt-in upsell prompt for AAD sync off users – Android
+
+#edge-mobile-aad-sync-upsell-enable
+
+Default
+Edge Android Google Play App Rating
+Show google play app rating with fallback to os-embedded app rating – Android
+
+#edge-mobile-google-play-app-rating
+
+Default
+Rewards Use User Market Country
+If enabled, Microsoft Rewards will use user market country. – Android
+
+#edge-mobile-rewards-use-user-market-country
+
+Default
+Rewards signup banner
+If enable, rewards signup banner will show in account switcher. – Android
+
+#edge-mobile-rewards-sign-up-banner
+
+Default
+Rewards Search Coin Animation
+If enabled, Rewards search coin animation will show for A/B test. – Android
+
+#edge-mobile-rewards-search-coin-animation
+
+Default
+Rewards Search Vibration
+If enabled, Rewards search vibration will show for A/B test. – Android
+
+#edge-mobile-rewards-search-vibration
+
+Default
+Rewards sign up banner redesign
+If enabled, Rewards sign up banner will show redesign ui for A/B test. – Android
+
+#edge-mobile-rewards-sign-up-banner-redesign
+
+Default
+Microsoft Rewards Persistent Cache
+If enabled, Microsoft Rewards persistent cache will be available. – Android
+
+#edge-mobile-rewards-cache
+
+Default
+Rewards new loading for new users
+If enabled, Rewards new loading will be enabled for new users. – Android
+
+#edge-mobile-rewards-new-loading-for-new-users
+
+Default
+Rewards new loading for enrolled users
+If enabled, Rewards new loading will be enabled for enrolled users. – Android
+
+#edge-mobile-rewards-new-loading-for-enrolled-users
+
+Default
+Rewards new user tooltip
+If enabled, Rewards new user tooltip will be available. – Android
+
+#edge-mobile-rewards-new-user-tooltip
+
+Default
+Rewards sign up new icon
+If enabled, Rewards sign up will show an new icon. – Android
+
+#edge-mobile-rewards-sign-up-new-icon
+
+Default
+Rewards sign up new text
+If enabled, Rewards sign up will show new text for A/B test. – Android
+
+#edge-mobile-rewards-sign-up-new-text
+
+Default
+Microsoft Rewards More Activities
+If enabled, More Activities of Microsoft Rewards will be available. – Android
+
+#edge-mobile-rewards-enable-more-activities
+
+Default
+Microsoft Rewards Earn Faster
+If enabled, Earn Faster of Microsoft Rewards will be available. – Android
+
+#edge-mobile-rewards-enable-earn-faster
+
+Default
+Microsoft Rewards Mobile Search
+If enabled, Mobile Search of Microsoft Rewards will be available. – Android
+
+#edge-mobile-rewards-enable-mobile-search
+
+Default
+Microsoft Rewards new countries
+If enabled, support rewards in new countries. – Android
+
+#edge-mobile-rewards-new-countries
+
+Default
+Rewards sign up new upsell
+If enabled, Rewards sign up will show the new upsell. – Android
+
+#edge-mobile-rewards-sign-up-new-upsell
+
+Default
+Prompt user to sign in for hubs
+When enabled, will prompt user to sign-in during visiting hubs – Android
+
+#edge-mobile-hub-upsell-enable
+
+Default
+Prompt user to fix account
+When enabled, will use new UX to prompt user – Android
+
+#edge-mobile-interaction-required-ux-improvement
+
+Default
+Use WebViewPro for sign-in on Android
+If enabled, will use WebViewPro for sign-in on Android – Android
+
+#edge-Android-use-webviewpro-for-signin-on-Android
+
+Default
+Trigger more default browser upsell
+When enabled, more default browser upsell will be triggered – Android
+
+#edge-mobile-default-browser-more-upsell
+
+Default
+Trigger Mini App Download Manager
+When enabled, will use mini app download manager – Android
+
+#edge-miniapp-download-manager
+
+Default
+Tooltip for download manager
+If enabled, user can see the tooltip in the download manager hub – Android
+
+#edge-miniapp-download-manager-upsell-tooltip
+
+Default
+Trigger Mini App Pdf Viewer
+When enabled, will use mini app pdf viewer – Android
+
+#edge-miniapp-pdf-viewer
+
+Default
+Trigger Use New Download Dialog Flow
+When enabled, will use new download dialog flow – Android
+
+#edge-new-download-dialog-flow
+
+Default
+Trigger Partial Card Upload
+When enabled, partial card upload and download will be supported – Android
+
+#edge-partial-card-upload
+
+Default
+Trigger Mini App Log Event
+When enabled, will report Log Event from js – Android
+
+#edge-miniapp-js-log-event
+
+Default
+Trigger Mini App Use Debug Channel
+When enabled, will use mini app published in debug channel – Android
+
+#edge-miniapp-use-debug-channel
+
+Default
+Trigger In App Notification
+When enabled, will use in app notification for download progress – Android
+
+#edge-in-app-notification
+
+Default
+Trigger detect pdf - Dismiss Start
+When enabled, will extract the pdf of the web page – Android
+
+#edge-detect-pdf-dismiss-start
+
+Default
+Trigger detect pdf - Dismiss End
+When enabled, will extract the pdf of the web page – Android
+
+#edge-detect-pdf-dismiss-end
+
+Default
+Trigger Cloud Config Service
+When enabled, will use Edge Cloud Config service – Android
+
+#edge-clound-config-service
+
+Default
+Trigger override user agent by url loader throttle
+When enabled, will replace user agent according to the host url – Android
+
+#edge-mobile-ua-shim-by-throttle
+
+Default
+Enable Hms Push on Android
+If enabled, you can send push to huawei device with hms – Android
+
+#edge-hms-push-android
+
+Default
+Enable Hms Notification NTP Upsell on Android
+If enabled, it will show Upsell after scroll on NTP when notification is disable – Android
+
+#edge-hms-notification-ntp-upsell-android
+
+Default
+Enable Use Hms frist on Huawei
+If enabled, your push will send by hms on huawei device which has both hms and gms – Android
+
+#edge-use-hms-first-android
+
+Default
+Trigger use system player for media with aac audio
+When enabled, will use system player for media with aac audio – Android
+
+#edge-android-use-system-player-for-aac
+
+Default
+Trigger mini app deals hub replace shopping
+When enabled, mini app deals hub replace shopping will be triggered – Android
+
+#edge-mobile-mini-app-replace-shopping
+
+Default
+Trigger mini app deals hub entry
+When enabled, mini app deals hub entry will be triggered – Android
+
+#edge-mobile-mini-app-deals-hub-entry
+
+Default
+Mini App Debugging Entrance
+When enabled, will show a debugging entrance in Edge Featured page – Android
+
+#edge-mobile-mini-app-debug-entrance
+
+Default
+Trigger mini app memory monitor
+When enabled, mini app memory monitor will be triggered – Android
+
+#edge-mobile-mini-app-memory-monitor
+
+Default
+Import other browser data
+When enabled, user can import other browser data – Android
+
+#edge-mobile-import-browser-data
+
+Default
+Use staging service for import other browser data
+When enabled, will use staging service for import other browser data – Android
+
+#edge-mobile-import-browser-data-staging-service
+
+Default
+import other browser password data
+when enabled, user can import other browser password data – Android
+
+#edge-mobile-import-browser-password-data
+
+Default
+Enable android anr monitor
+When enabled, start anr monitor and report histogram – Android
+
+#edge-android-anr-monitor
+
+Default
+Edge New Notification Upsell
+When enabled, will show notification on first or second session to promote opt in. – Android
+
+#edge-android-notification-upsell
+
+Default
+Wallpaper center access in NTP
+If enabled, wallpaper center can be accessed in NTP. – Android
+
+#edge-wallpaper-center-ntp
+
+Default
+Wallpaper Daily Quotes in NTP
+If enabled, daily wallpaper AI quotes can be accessed in NTP. – Android
+
+#edge-wallpaper-ai-quotes-android
+
+Default
+Edge notification runtime permission on android 13+
+Add runtime permission notification request on anroid 13+ – Android
+
+#edge-android-notification-runtime-permission
+
+Default
+Edge codex share on Android
+Share codex long-screenshot/normal-screenshot template. – Android
+
+#edge-android-codex-share
+
+Default
+Edge codex share on Android MiniApp
+Codex share screenshot on miniapp. – Android
+
+#edge-android-codex-share=on-miniapp
+
+Default
+Edge drop on Android share
+Add e-drop entrypoint on share bottom panel – Android
+
+#edge-android-share-drop
+
+Default
+Optimize Overflow Menu Position
+If enabled, optimize overflow menu position. – Android
+
+#edge-android-optimize-overflowmenu-position
+
+Default
+Edge codex share on Android Discover
+Codex share screenshot on Discover. – Android
+
+#edge-android-codex-share-on-discover
+
+Default
+Edge image crop on Android
+if enabled, will add crop entrance in share page. – Android
+
+#edge-android-crop
+
+Default
+Add discover chat voice trigger
+if enabled, will add discover chat voice trigger. – Android
+
+#edge-discover-voice-search
+
+Default
+Add discover chat prerender
+if enabled, will prerender discover chat when enter app. – Android
+
+#edge-discover-prerender
+
+Default
+Info Arch Optimize Bottom Bar For Old User
+If enabled, will Info Arch Optimize Bottom Bar For Old User – Android
+
+#edge-android-info-arch-optimize-bottom-bar-for-old-user
+
+Default
+Discover Chat Mob Lite
+If enabled, will use mob lite for discover chat – Android
+
+#edge-discover-moblite
+
+Default
+Discover Chat mob full
+If enabled, will use mob full for discover chat – Android
+
+#edge-discover-mob-full
+
+Default
+Web protection dashboard
+When enabled, you could see web protection report. – Android
+
+#edge-web-protection-dashboard
+
+Default
+Web protection ads blocker report
+If enabled, we will generate web protection ads blocker report. – Android
+
+#edge-web-protection-dashboard-report-adblock
+
+Default
+Reimplement some enterprise and identity functionality through NavigationThrottle
+If disabled, will fallback to previous behavior (URLLoaderThrottle). – Android
+
+#edge-entfun-mobile-navigation-throttle
+
+Default
+Enable gpu service logging
+Enable printing the actual GL driver calls. – Mac, Windows, Linux, Android
+
+#enable-gpu-service-logging
+
+已禁用
+Strict-Origin-Isolation
+Experimental security mode that strengthens the site isolation policy. Controls whether site isolation should use origins instead of scheme and eTLD+1. – Mac, Windows, Linux, Android
+
+#strict-origin-isolation
+
+Default
+Storage Access API
+Enables the Storage Access API, allowing websites to request storage access when it would otherwise be restricted. – Mac, Windows, Linux, Android
+
+#storage-access-api
+
+Default
+Use DNS https alpn
+When enabled, Edge may try QUIC on the first connection using the ALPN information in the DNS HTTPS record. – Mac, Windows, Linux, Android
+
+#use-dns-https-svcb-alpn
+
+Default
+Back-forward cache
+If enabled, caches eligible pages after cross-site navigations.To enable caching pages on same-site navigations too, choose 'enabled same-site support'. – Mac, Windows, Linux, Android
+
+#back-forward-cache
+
+Default
+Windows Scrolling Personality
+If enabled, mousewheel and keyboard scrolls will scroll by a percentage of the scroller size and the default scroll animation is replaced with Impulse-style scroll animations. – Mac, Windows, Linux, Android
+
+#windows-scrolling-personality
+
+Default
+Elastic Overscroll
+Enables Elastic Overscrolling on touchscreens and precision touchpads. – Windows, Android
+
+#elastic-overscroll
+
+Default
+Heavy ad privacy mitigations
+Enables privacy mitigations for the heavy ad intervention. Disabling this makes the intervention deterministic. Defaults to enabled. – Mac, Windows, Linux, Android
+
+#heavy-ad-privacy-mitigations
+
+Default
+Enable experimental cookie features
+Enable new features that affect setting, sending, and managing cookies. The enabled features are subject to change at any time. – Mac, Windows, Linux, Android
+
+#enable-experimental-cookie-features
+
+Default
+Enable First-Party Sets
+When enabled, Edge will apply First-Party Sets to features such as the SameParty cookie attribute. – Mac, Windows, Linux, Android
+
+#enable-first-party-sets
+
+Default
+Partitioned cookies
+Controls if the Partitioned cookie attribute is enabled. – Mac, Windows, Linux, Android
+
+#partitioned-cookies
+
+Default
+Experimental third-party storage partitioning.
+Enables partitioning of third-party storage by top-level site. Note: this is under active development and may result in unexpected behavior. – Mac, Windows, Linux, Android
+
+#third-party-storage-partitioning
+
+Default
+Force off heuristics for inflating text sizes on devices with small screens.
+Disable text autosizing. – Android
+
+#force-off-text-autosizing
+
+Default
+Origin-keyed Agent Clusters by default
+Select the default behaviour for the Origin-Agent-Cluster http header. If enabled, an absent header will cause pages to be assigned to an origin-keyed agent cluster, and to a site-keyed agent cluster when disabled. Documents whose agent clusters are origin-keyed cannot set document.domain to relax the same-origin policy. – Mac, Windows, Linux, Android
+
+#origin-agent-cluster-default
+
+Default
+Clipboard unsanitized read and write
+Allows reading/writing unsanitized content from/to the clipboard. Currently, it is only applicable to HTML format. See crbug.com/1268679. – Mac, Windows, Linux, Android
+
+#clipboard-unsanitized-content
+
+Default
+Storage Buckets API
+Enable experimental Storage Buckets API, allowing websites to create multiple buckets of storage to organize their data, allowing user agents to delete each bucket independently of other buckets. – Mac, Windows, Linux, Android
+
+#storage-buckets
+
+Default
+你所做的更改将在重启 Microsoft Edge 后生效。
+重启
