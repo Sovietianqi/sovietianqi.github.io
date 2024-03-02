@@ -279,7 +279,7 @@
 
     "ts:importmap": "自定义地图...",
     "stt:importmap": "从本地文件系统添加自定义地图文件",
-    "ts:importmaperror": "无法导入地图。请微信关注公众号 思牛逼 获取解决方案",
+    "ts:importmaperror": "无法导入地图",
     "ts:filenameerror": "文件名包含受限字符，无法保存",
     "ts:importmapunsupportedtype": "不受支持的文件类型。\n\n支持的地图类型：%s",
     "ts:importmapduplicateerror": "地图“%s”已存在。",
