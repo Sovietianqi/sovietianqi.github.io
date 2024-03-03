@@ -2,7 +2,7 @@
  .download-container h3 { 
    font-size: 24px; 
    padding: 10px 16px; 
-   border-bottom: 1px solid #e8e8e8; 
+   border-bottom: 1px solid #000000; 
  } 
  /* CSS */ 
  @media screen and (max-width: 700px) { 
