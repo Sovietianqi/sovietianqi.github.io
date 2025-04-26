@@ -232,6 +232,37 @@
             from, to { border-color: transparent }
             50% { border-color: var(--red) }
         }
+        
+        /* 添加以下样式 */
+            .download-group {
+            display: flex;
+             flex-direction: column;
+             gap: 8px;
+            }
+
+            .doc-button {
+               position: relative;
+               overflow: hidden;
+               transition: 0.3s;
+}
+
+            .doc-button:after {
+             content: "";
+             position: absolute;
+              top: -50%;
+             left: -50%;
+              width: 200%;
+              height: 200%;
+              background: linear-gradient(45deg, 
+                 transparent, 
+                rgba(255,215,0,0.2) 50%, 
+                 transparent);
+              transition: 0.5s;
+            }
+
+            .doc-button:hover:after {
+              transform: translate(50%, 50%);
+            }
     </style>
 </head>
 <body>
@@ -249,8 +280,8 @@
             <li><a href="./cr.html">
                 <i class="fas fa-code"></i>CR革命语言
             </a></li>
-            <li><a href="#rsc-engine">
-                <i class="fas fa-cogs"></i>RSC扩展引擎
+            <li><a href="#rsc-engine" onclick="showDetail('rsc-engine')">
+              <i class="fas fa-cogs"></i>RSC扩展引擎
             </a></li>
             <li><a href="#ra2-mod">
                 <i class="fas fa-gamepad"></i>红警2MOD开发
@@ -288,12 +319,24 @@
                 }</code>
             </div>
         </div>
-
-        <!-- 在原有代码的main-content内添加以下section -->
-<div class="section" id="rsc-engine">
-    <h2 style="font-family: 'Orbitron'; border-left: 5px solid #FFD700;">
-        <i class="fas fa-rocket"></i> RT苏维埃燃烧引擎
-    </h2>
+    <div class="section" id="rsc-engine-brief">
+        <h2><i class="fas fa-server"></i> RSC扩展引擎</h2>
+        <p>分布式计算的苏维埃式实现方案</p>
+        <div class="progress-bar" style="...">
+            <div style="width: 75%; ..."></div>
+        </div>
+        <button onclick="showDetail('rsc-engine')" 
+                style="margin-top:15px;
+                       background:linear-gradient(45deg,#CC0000,#660000);
+                       color:white;
+                       padding:8px 20px;
+                       border:none;
+                       border-radius:5px;
+                       cursor:pointer;">
+            查看技术细节
+        </button>
+    </div>
+    <div class="section detailed-content" id="rsc-engine" style="display:none;">
     
     <!-- 引擎标志 -->
     <div class="rsc-logo" style="text-align:center;margin:20px 0;">
@@ -353,34 +396,38 @@
             </div>
         </div>
 
-        <!-- 文档链接 -->
-        <div class="doc-buttons" style="margin-top:20px;display:flex;gap:10px;">
-            <a href="https://github.com/Sovietianqi/RT-Soviet-Combustion/wiki" 
-               class="doc-button" 
-               style="flex:1;
-                      padding:10px;
-                      background:linear-gradient(45deg,#CC0000,#660000);
-                      text-align:center;
-                      color:white;
-                      text-decoration:none;
-                      border-radius:5px;
-                      transition:0.3s;">
-                <i class="fas fa-book"></i> 技术白皮书
-            </a>
-            <a href="https://github.com/Sovietianqi/RT-Soviet-Combustion/releases" 
-               class="doc-button" 
-               style="flex:1;
-                      padding:10px;
-                      background:linear-gradient(45deg,#CC0000,#660000);
-                      text-align:center;
-                      color:white;
-                      text-decoration:none;
-                      border-radius:5px;
-                      transition:0.3s;">
-                <i class="fas fa-download"></i> 最新版本
-            </a>
-        </div>
-    </div>
+        <i class="fas fa-star soviet-star"></i>
+        <div class="doc-buttons" style="...">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; width: 100%;">
+                <!-- 白皮书下载 -->
+                <div class="download-group">
+                    <a href="https://github.com/.../wiki" 
+                       class="doc-button" 
+                       style="...">
+                        <i class="fas fa-book"></i> GitHub白皮书
+                    </a>
+                    <a href="/docs/rsc-whitepaper.pdf" 
+                       class="doc-button" 
+                       style="...">
+                        <i class="fas fa-book"></i> 本地白皮书
+                    </a>
+                </div>
+
+                <!-- 版本下载 -->
+                <div class="download-group">
+                    <a href="https://github.com/.../releases" 
+                       class="doc-button" 
+                       style="...">
+                        <i class="fas fa-download"></i> GitHub版本
+                    </a>
+                    <a href="/downloads/rsc-latest.zip" 
+                       class="doc-button" 
+                       style="...">
+                        <i class="fas fa-download"></i> 本地下载
+                    </a>
+                </div>
+                </div>
+                </div>
 
     <!-- 技术说明 -->
     <div class="tech-description" style="margin-top:30px;">
@@ -394,8 +441,6 @@
                 <li><i class="fas fa-check" style="color:#CC0000;"></i> 动态负载均衡算法</li>
                 <li><i class="fas fa-check" style="color:#CC0000;"></i> 量子抗性签名机制</li>
                 <li><i class="fas fa-check" style="color:#CC0000;"></i> 自主修复
-
-        <i class="fas fa-star soviet-star"></i>
     </main>
 
     <script>
@@ -460,6 +505,55 @@
                 particles.remove();
             }, 1000);
         });
+        
+// 显示详细内容函数
+function showDetail(sectionId) {
+    // 隐藏所有详细内容
+    document.querySelectorAll('.detailed-content').forEach(content => {
+        content.style.display = 'none';
+    });
+    
+    // 显示目标内容
+    const targetSection = document.getElementById(sectionId);
+    if (targetSection) {
+        targetSection.style.display = 'block';
+        targetSection.scrollIntoView({ behavior: 'smooth' });
+    }
+    
+    // 隐藏简要介绍
+    document.getElementById('rsc-engine-brief').style.display = 'none';
+}
+
+// 返回主页函数（在详细页面添加返回按钮）
+function returnToMain() {
+    document.querySelectorAll('.detailed-content').forEach(content => {
+        content.style.display = 'none';
+    });
+    document.getElementById('rsc-engine-brief').style.display = 'block';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// 在详细内容区添加返回按钮
+document.querySelector('#rsc-engine').innerHTML += `
+    <button onclick="returnToMain()" 
+            style="position: absolute;
+                   top: 20px;
+                   right: 20px;
+                   background: rgba(255,215,0,0.2);
+                   color: #FFD700;
+                   border: 1px solid #FFD700;
+                   padding: 5px 15px;
+                   cursor: pointer;">
+        <i class="fas fa-arrow-left"></i> 返回主界面
+    </button>
+`;
+
+// 修改GitHub数据获取为仅当详细内容显示时加载
+async function fetchGitHubStats() {
+    if(document.getElementById('rsc-engine').style.display === 'block') {
+        // 原有数据获取逻辑
+    }
+}
     </script>
 </body>
 </html>
