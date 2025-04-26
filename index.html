@@ -3,60 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sovietianqi - 技术阵地</title>
-    <link rel="stylesheet" href="./Style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>技术委员会</title>
+    <link rel="stylesheet" href="soviet-sidebar.css">
 </head>
 <body>
-    <!-- 动态粒子背景 -->
-    <div class="particle-canvas"></div>
-    
     <!-- 侧边栏 -->
-    <nav class="soviet-sidebar">
-        <div class="sidebar-emblem">
-            <div class="hammer-sickle"></div>
-            <span>技术委员会</span>
+    <nav class="soviet-nav">
+        <!-- 动态 -->
+        <div class="party-emblem">
+            <div class="hammer"></div>
+            <div class="sickle"></div>
+            <div class="gear"></div>
         </div>
-        <div class="sidebar-links">
-            <a href="#cr-docs" class="nav-item">
-                <i class="fas fa-file-code"></i>
-                <span>CR语言规范</span>
+        
+        <!-- 导航系统 -->
+        <div class="revolution-menu">
+            <a href="./cr.html" class="nav-item pulsate">
+                <span class="russian-text">CRЯЗЫК</span>
+                <span class="chinese-text">CR语言规范</span>
             </a>
-            <a href="#ra2-mod" class="nav-item">
-                <i class="fas fa-cogs"></i>
-                <span>红警MOD开发</span>
+            
+            <a href="#mod" class="nav-item pulsate">
+                <span class="russian-text">МОДЫ</span>
+                <span class="chinese-text">红警2MOD开发</span>
             </a>
-            <a href="https://github.com/sovietianqi" class="nav-item">
-                <i class="fab fa-github"></i>
-                <span>GitHub仓库</span>
+
+            <a href="#github" class="nav-item pulsate">
+                <span class="russian-text">КОДБАЗА</span>
+                <span class="chinese-text">GitHub仓库</span>
             </a>
-            <a href="#rsc-engine" class="nav-item">
-                <i class="fas fa-rocket"></i>
-                <span>RSC引擎</span>
+
+            <a href="#engine" class="nav-item pulsate">
+                <span class="russian-text">ДВИГАТЕЛЬ</span>
+                <span class="chinese-text">RSC引擎开发</span>
             </a>
-            <a href="#cloud" class="nav-item">
-                <i class="fas fa-database"></i>
-                <span>分布式云存储</span>
-            </a>
+
+            <div class="revolution-divider"></div>
+
+            <!-- 动态标语 -->
+            <div class="revolution-marquee">
+                <span>Пролетарии всех стран, соединяйтесь! 全世界无产者联合起来！</span>
+            </div>
         </div>
     </nav>
 
-    <!-- 主内容区 -->
-    <main class="soviet-main">
-        <header class="revolution-header">
-            <h1 class="glowing-text">
-                <span class="cyrillic">СОВЕТИАНЦИ</span>
-                <span>SOVIETIANQI</span>
-            </h1>
-            <div class="pulsating-divider"></div>
-            <p class="revolution-subtitle">计算科学阵线</p>
-        </header>
-
-        <section class="industrial-grid">
-            <!-- 技术卡片内容 -->
-        </section>
-    </main>
-
-    <script src="main.js"></script>
+    <script src="soviet-effects.js"></script>
 </body>
 </html>
