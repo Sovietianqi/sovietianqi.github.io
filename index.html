@@ -1,67 +1,79 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sovietianqi - 数字先锋</title>
-    <link rel="stylesheet" href="./Style.css">
-</head>
+
 <body>
-    <!-- 动态背景 -->
-    <div class="particles-container"></div>
-    
-    <!-- 导航面板 -->
-    <nav class="cyber-nav">
-        <div class="nav-toggle">≡</div>
-        <div class="nav-menu">
-            <a href="#home" class="nav-link active">首页</a>
-            <a href="CR_DOCS.html" class="nav-link">CR语言</a>
-            <a href="RA2_MOD.html" class="nav-link">红警MOD</a>
-            <a href="https://github.com/sovietianqi" class="nav-link">GitHub</a>
-            <a href="RSC_ENGINE.html" class="nav-link">RSC引擎</a>
-            <a href="CLOUD.html" class="nav-link">云存储</a>
+    <!-- 导航 -->
+    <nav class="revolution-nav">
+        <div class="nav-container">
+            <div class="hammer-sickle">⚒</div>
+            <div class="nav-links">
+                <a href="#projects" class="nav-link">项目</a>
+                <a href="#manifesto" class="nav-link">宣言</a>
+                <a href="#contact" class="nav-link">联络</a>
+            </div>
         </div>
     </nav>
 
-    <!-- 主内容区 -->
-    <main class="container">
-        <header class="hero">
-            <h1 class="gradient-text">Sovietianqi</h1>
-            <div class="cyber-divider"></div>
-            <p class="subtitle">数字基建工程师 | 开源社区贡献者</p>
+    <!-- 工业主内容 -->
+    <main class="industrial-main">
+        <header class="revolution-header">
+            <h1 class="red-star-title">
+                <span>SOVIETIANQI</span>
+                <i class="fas fa-star"></i>
+            </h1>
+            <p class="revolution-subtitle">数字工业建设者 | 开源工程师</p>
         </header>
 
-        <section class="card-grid">
-            <article class="cyber-card">
-                <h2><i class="fas fa-code-branch"></i> 技术栈</h2>
-                <ul class="tech-list">
-                    <li>C/C++</li>
-                    <li>Python</li>
-                    <li>Rust</li>
-                    <li>WebAssembly</li>
+        <!-- 宣言区块 -->
+        <section class="revolution-grid">
+            <article class="manifesto-card">
+                <h2><i class="fas fa-industry"></i> 项目</h2>
+                <ul class="five-year-plan">
+                    <li>CR语言编译器开发</li>
+                    <li>红警2现代重制MOD</li>
+                    <li>RSC引擎架构优化</li>
+                    <li>分布式云存储网络</li>
                 </ul>
             </article>
 
-            <article class="cyber-card">
-                <h2><i class="fas fa-project-diagram"></i> 当前项目</h2>
-                <div class="project">
-                    <h3>CR语言编译器</h3>
-                    <p>面向物联网的现代系统编程语言</p>
-                </div>
+            <article class="manifesto-card">
+                <h2><i class="fas fa-university"></i> 技术宣言</h2>
+                <p class="manifesto-text">
+                    我们主张：<br>
+                </p>
             </article>
         </section>
+
+        <!-- 联络区块 -->
+        <div class="industrial-border">
+            <div class="social-links">
+                <a href="https://github.com/sovietianqi" class="social-icon">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="CR_DOCS.html" class="social-icon">
+                    <i class="fas fa-file-code"></i>
+                </a>
+                <a href="CLOUD.html" class="social-icon">
+                    <i class="fas fa-server"></i>
+                </a>
+            </div>
+        </div>
     </main>
 
-    <!-- 页脚 -->
-    <footer class="neo-footer">
-        <div class="social-links">
-            <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
-            <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
-            <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
-        </div>
-        <p class="copyright">&copy; 2023 Sovietianqi. 遵循 MIT 许可证</p>
-    </footer>
+    <script>
+        // 动态工业效果
+        document.querySelectorAll('.manifesto-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'perspective(1000px) rotateX(5deg)';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'none';
+            });
+        });
 
-    <script src="soviet-script.js"></script>
+        // 红星旋转动画
+        const redStar = document.querySelector('.fa-star');
+        setInterval(() => {
+            redStar.style.transform = `rotate(${Date.now()/50 % 360}deg)`;
+        }, 50);
+    </script>
 </body>
 </html>
