@@ -3,12 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CR 语言 - 现代系统级编程新标准</title>
+    <title>CR 1.0 - 现代系统级编程语言</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/styles/vs2015.min.css">
     <style>
         :root {
             --primary: #2baeff;
+            --accent: #00ff88;
             --dark-bg: #1a1a1a;
             --code-bg: #2d2d2d;
+            --text: #e0e0e0;
         }
 
         * {
@@ -20,8 +23,9 @@
 
         body {
             background: var(--dark-bg);
-            color: #e0e0e0;
+            color: var(--text);
             line-height: 1.6;
+            scroll-behavior: smooth;
         }
 
         /* 导航栏 */
@@ -32,12 +36,14 @@
             background: rgba(0, 0, 0, 0.9);
             padding: 1rem;
             backdrop-filter: blur(10px);
+            z-index: 1000;
         }
 
         .nav-links {
             display: flex;
             gap: 2rem;
             justify-content: center;
+            flex-wrap: wrap;
         }
 
         .nav-links a {
@@ -45,23 +51,25 @@
             text-decoration: none;
             font-weight: 500;
             transition: color 0.3s;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
         }
 
         .nav-links a:hover {
-            color: var(--primary);
+            background: rgba(43, 174, 255, 0.1);
         }
 
         /* 主内容区 */
         .hero {
-            padding: 8rem 2rem 4rem;
+            padding: 10rem 2rem 4rem;
             text-align: center;
             background: linear-gradient(45deg, #0a0a0a, #1a1a1a);
         }
 
         .hero h1 {
             font-size: 3.5rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(to right, #2baeff, #00ff88);
+            margin-bottom: 1.5rem;
+            background: linear-gradient(to right, var(--primary), var(--accent));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -72,15 +80,37 @@
             padding: 2rem;
         }
 
-        .feature-card {
-            background: #252525;
-            border-radius: 12px;
-            padding: 2rem;
-            margin: 2rem 0;
-            border: 1px solid #363636;
+        /* 特性网格布局 */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            padding: 2rem 0;
         }
 
-        /* 代码展示 */
+        /* 渐变边框卡片 */
+        .feature-card {
+            position: relative;
+            background: var(--dark-bg);
+            border-radius: 12px;
+            padding: 2rem;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            padding: 2px;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            -webkit-mask: 
+                linear-gradient(#fff 0 0) content-box, 
+                linear-gradient(#fff 0 0);
+            mask-composite: exclude;
+            border-radius: 12px;
+        }
+
+        /* 代码块样式 */
         .code-block {
             background: var(--code-bg);
             padding: 1.5rem;
@@ -93,80 +123,206 @@
         .code-keyword { color: #ff79c6; }
         .code-type { color: #8be9fd; }
         .code-string { color: #f1fa8c; }
+        .code-comment { color: #6272a4; }
 
         /* 响应式设计 */
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .nav-links {
-                flex-direction: column;
-                text-align: center;
-            }
+            .hero h1 { font-size: 2.5rem; }
+            .nav-links { gap: 1rem; }
         }
     </style>
 </head>
 <body>
     <nav class="navbar">
         <div class="nav-links">
-            <a href="#features">核心特性</a>
-            <a href="#syntax">语法示例</a>
-            <a href="#download">下载</a>
-            <a href="#docs">文档</a>
+            <a href="#memory">内存安全</a>
+            <a href="#concurrency">并发模型</a>
+            <a href="#syntax">现代语法</a>
+            <a href="#system">系统编程</a>
+            <a href="#tools">工具链</a>
         </div>
     </nav>
 
     <header class="hero">
-        <h1>CR 语言 4.0</h1>
-        <p>在 C++ 的土壤中生长出新的安全生态</p>
+        <h1>CR 语言 1.0</h1>
+        <p>在C++的基石上构建现代化系统编程体验</p>
         <div style="margin-top: 2rem;">
             <button style="background: var(--primary); padding: 1rem 2rem; border: none; border-radius: 6px; cursor: pointer;">
-                立即体验
+                立即安装
             </button>
         </div>
     </header>
 
-    <section id="features" class="section">
-        <h2>革命性特性</h2>
-        
-        <div class="feature-card">
-            <h3>混合内存管理</h3>
-            <div class="code-block">
-                <pre><code>// 安全域内存管理
-<span class="code-keyword">safe</span> {
+    <!-- 内存安全 -->
+    <section id="memory" class="section">
+        <h2>🛡️ 内存安全系统</h2>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <h3>三级指针体系</h3>
+                <div class="code-block">
+                    <pre><code><span class="code-keyword">safe</span> {
+    <span class="code-comment">// 独占所有权指针</span>
     <span class="code-keyword">own</span>&lt;vector&lt;int&gt;&gt; data = own_new&lt;vector&lt;int&gt;&gt;(100);
-    <span class="code-keyword">borrow</span> &lt;mut int&gt; item = data[0]; <span class="code-comment">// 编译期检查</span>
-}</code></pre>
-            </div>
-        </div>
-
-        <div class="feature-card">
-            <h3>结构化并发</h3>
-            <div class="code-block">
-                <pre><code><span class="code-keyword">async</span> scope {
-    <span class="code-keyword">let</span> task1 = co_spawn fetch_data();
-    <span class="code-keyword">let</span> task2 = co_spawn process_stream();
     
-    <span class="code-keyword">-></span> merge(task1, task2) {
-        println!(<span class="code-string">"All tasks completed"</span>);
-    }
+    <span class="code-comment">// 安全借用</span>
+    <span class="code-keyword">borrow</span> &lt;mut int&gt; item = data[0];
+    
+    <span class="code-comment">// 跨域转换</span>
+    legacy_ptr&lt;int&gt; raw = data.leak_unsafe();
 }</code></pre>
+                </div>
+            </div>
+
+            <div class="feature-card">
+                <h3>混合垃圾回收</h3>
+                <div class="code-block">
+                    <pre><code><span class="code-keyword">gc</span> --mode=generational {
+    Gc&lt;Connection&gt; conn = gc_new&lt;Connection&gt;();
+    
+    <span class="code-comment">// 混合内存管理</span>
+    own&lt;Socket&gt; sock = own_new&lt;Socket&gt;();
+    gc_adopt(sock.release());
+}</code></pre>
+                </div>
             </div>
         </div>
     </section>
 
-    <section id="syntax" class="section">
-        <h2>现代化语法</h2>
-        
-        <div class="feature-card">
-            <h3>模式匹配</h3>
-            <div class="code-block">
-                <pre><code><span class="code-keyword">match</span> (result) {
-    Ok(<span class="code-type">var</span> value) => process(value),
-    Err(Error::Timeout) => retry(),
-    _ => panic!(<span class="code-string">"Unexpected"</span>)
+    <!-- 并发模型 -->
+    <section id="concurrency" class="section">
+        <h2>⚡ 并发与并行</h2>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <h3>结构化并发</h3>
+                <div class="code-block">
+                    <pre><code><span class="code-keyword">async</span> scope {
+    <span class="code-keyword">let</span> task1 = co_spawn fetch_data();
+    Chan&lt;int&gt; pipe(10);
+    
+    <span class="code-keyword">par</span> {
+        pipe.send(co_await task1);
+        process(pipe.recv().unwrap());
+    }
+    
+    <span class="code-keyword">-></span> merge(task1) {
+        log!("任务完成");
+    }
 }</code></pre>
+                </div>
+            </div>
+
+            <div class="feature-card">
+                <h3>无锁编程</h3>
+                <div class="code-block">
+                    <pre><code>LockFreeMap&lt;int, string&gt; cache;
+
+<span class="code-keyword">atomic</span> {
+    cache.insert(42, "answer");
+    <span class="code-keyword">if</span> (let Some(val) = cache.get(42)) {
+        process(val);
+    }
+}</code></pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 现代语法 -->
+    <section id="syntax" class="section">
+        <h2>✨ 现代化语法</h2>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <h3>模式匹配</h3>
+                <div class="code-block">
+                    <pre><code><span class="code-keyword">match</span> (sensor.read()) {
+    Ok(Point{ x: 0..100, y }) 
+        <span class="code-keyword">if</span> y < 50 => activate_safety(),
+    Err(SensorError::Timeout) => retry(3),
+    _ => emergency_stop()
+}</code></pre>
+                </div>
+            </div>
+
+            <div class="feature-card">
+                <h3>委托事件系统</h3>
+                <div class="code-block">
+                    <pre><code>event ClickEvent = multicast delegate&lt;void(int, int)&gt;;
+
+<span class="code-keyword">safe</span> {
+    Button btn;
+    btn.clicked += [](int x, int y) {
+        println!("点击坐标: ({}, {})", x, y);
+    };
+    
+    <span class="code-keyword">async</span> {
+        co_await btn.listen();
+    };
+}</code></pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 系统编程 -->
+    <section id="system" class="section">
+        <h2>🔧 系统级编程</h2>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <h3>内联汇编</h3>
+                <div class="code-block">
+                    <pre><code>[[naked]]
+<span class="code-keyword">fn</span> void interrupt_handler() {
+    asm!(
+        "pusha",
+        "mov eax, [esp+32]",
+        "call cr_handler",
+        "popa",
+        "iret",
+        options(noreturn)
+}</code></pre>
+                </div>
+            </div>
+
+            <div class="feature-card">
+                <h3>硬件交互</h3>
+                <div class="code-block">
+                    <pre><code><span class="code-comment">// 内存映射IO</span>
+volatile register&lt;u32&gt; GPIO = 0xFE200000;
+
+<span class="code-comment">// DMA控制</span>
+dma::transfer(src, dest, 1024, 
+    dma::Direction::MemToDev,
+    dma::Priority::High
+);</code></pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 工具链 -->
+    <section id="tools" class="section">
+        <h2>🛠️ 开发者工具链</h2>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <h3>编译命令</h3>
+                <div class="code-block">
+                    <pre><code><span class="code-comment"># 安全优先模式</span>
+$ crc --safe-mode=strict \
+      --gc=generational \
+      --analyze-ownership \
+      -O3 app.cr -o release.bin</code></pre>
+                </div>
+            </div>
+
+            <div class="feature-card">
+                <h3>迁移工具</h3>
+                <div class="code-block">
+                    <pre><code><span class="code-comment"># 转换传统C++代码</span>
+$ crc --convert-pointers=smart \
+      --annotate-legacy \
+      legacy_app.cpp \
+      -o modern.cr</code></pre>
+                </div>
             </div>
         </div>
     </section>
@@ -175,9 +331,30 @@
         <p>© 2027 CR 语言标准委员会 | 在安全与性能的刀锋上舞蹈</p>
     </footer>
 
-    <!-- 代码高亮 -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/styles/vs2015.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/highlight.min.js"></script>
-    <script>hljs.highlightAll();</script>
+    <script>
+        // 初始化代码高亮
+        hljs.highlightAll();
+
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                target.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
+        // 动态卡片效果
+        document.querySelectorAll('.feature-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+            });
+        });
+    </script>
 </body>
 </html>
