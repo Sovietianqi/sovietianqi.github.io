@@ -1,175 +1,177 @@
-/* 苏维埃核心配色 */
+/* 苏维埃工业配色 */
 :root {
-    --soviet-red: #CC0000;
-    --revolution-gold: #FFD700;
-    --industrial-steel: #3A3A3A;
-    --propaganda-blue: #0047AB;
+    --soviet-red: #c41e3a;
+    --revolution-gold: #ffd700;
+    --steel-gray: #2b2b2b;
+    --industrial-orange: #ff6b35;
 }
 
-/* 基础结构 */
-body {
-    background: linear-gradient(
-        45deg,
-        var(--industrial-steel) 0%,
-        #1a1a1a 100%
-    );
-    color: #fff;
-    font-family: 'Roboto Condensed', 'Noto Sans SC', sans-serif;
-    min-height: 100vh;
-    overflow-x: hidden;
-}
-
-/* 动态侧边栏 */
-.soviet-sidebar {
+/* 硬核侧边栏结构 */
+.soviet-nav {
     position: fixed;
     left: 0;
     top: 0;
-    width: 280px;
+    width: 320px;
     height: 100vh;
-    background: rgba(0,0,0,0.9);
-    border-right: 3px solid var(--revolution-gold);
-    backdrop-filter: blur(5px);
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    background: 
+        linear-gradient(
+            45deg, 
+            var(--steel-gray) 0%,
+            #1a1a1a 100%
+        ),
+        repeating-linear-gradient(
+            -45deg,
+            transparent,
+            transparent 2px,
+            var(--soviet-red) 3px,
+            var(--soviet-red) 5px
+        );
+    border-right: 5px solid var(--revolution-gold);
+    box-shadow: 10px 0 30px rgba(0,0,0,0.5);
     z-index: 1000;
 }
 
-.sidebar-emblem {
-    padding: 2rem;
-    border-bottom: 2px solid var(--soviet-red);
-}
-
-.hammer-sickle {
-    width: 60px;
-    height: 60px;
-    background: 
-        linear-gradient(45deg, 
-            transparent 45%,
-            var(--revolution-gold) 45%,
-            var(--revolution-gold) 55%,
-            transparent 55%
-        ),
-        linear-gradient(-45deg, 
-            transparent 45%,
-            var(--revolution-gold) 45%,
-            var(--revolution-gold) 55%,
-            transparent 55%
-        );
-    margin: 0 auto;
+/* 动态系统 */
+.party-emblem {
     position: relative;
-    animation: emblem-rotate 10s linear infinite;
+    width: 120px;
+    height: 120px;
+    margin: 2rem auto;
+    filter: drop-shadow(0 0 10px var(--industrial-orange));
 }
 
-.hammer-sickle::before {
+.hammer {
+    position: absolute;
+    width: 80px;
+    height: 15px;
+    background: var(--revolution-gold);
+    transform: rotate(45deg);
+    top: 35%;
+    left: 20%;
+    animation: hammer-swing 5s infinite;
+}
+
+.hammer::after {
     content: '';
     position: absolute;
-    width: 30px;
-    height: 30px;
-    border: 3px solid var(--revolution-gold);
-    border-radius: 50%;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    width: 20px;
+    height: 60px;
+    background: var(--revolution-gold);
+    right: -10px;
+    top: -20px;
 }
 
-/* 导航链接动效 */
+.sickle {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    border: 8px solid var(--revolution-gold);
+    border-radius: 50%;
+    clip-path: polygon(0 0, 100% 0, 100% 50%, 50% 50%, 0 100%);
+    top: 30%;
+    left: 30%;
+    animation: sickle-rotate 8s linear infinite;
+}
+
+.gear {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background: 
+        repeating-conic-gradient(
+            var(--steel-gray) 0deg 10deg,
+            var(--revolution-gold) 10deg 20deg
+        );
+    border-radius: 50%;
+    animation: gear-spin 15s linear infinite;
+}
+
+/* 导航菜单 */
+.revolution-menu {
+    padding: 2rem;
+}
+
 .nav-item {
-    display: flex;
-    align-items: center;
-    padding: 1.2rem 2rem;
-    color: rgba(255,255,255,0.8);
-    text-decoration: none;
-    transition: all 0.3s ease;
+    display: block;
+    padding: 1.5rem;
+    margin: 1rem 0;
+    background: rgba(196,30,58,0.3);
+    border-left: 5px solid var(--revolution-gold);
     position: relative;
+    transition: 0.3s all cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .nav-item:hover {
+    transform: translateX(20px);
     background: linear-gradient(
         90deg,
-        rgba(204,0,0,0.3) 0%,
-        transparent 100%
+        rgba(196,30,58,0.5) 0%,
+        rgba(0,0,0,0.3) 100%
     );
-    transform: translateX(10px);
+    box-shadow: 5px 0 15px var(--soviet-red);
 }
 
-.nav-item i {
-    width: 30px;
-    font-size: 1.2rem;
-    text-shadow: 0 0 10px var(--revolution-gold);
-}
-
-/* 主内容区特效 */
-.revolution-header {
-    margin-left: 300px;
-    padding: 4rem 2rem;
-    position: relative;
-}
-
-.glowing-text {
-    font-size: 3.5rem;
-    text-transform: uppercase;
-    text-shadow: 
-        0 0 10px var(--soviet-red),
-        0 0 20px var(--soviet-red),
-        0 0 30px var(--soviet-red);
-    animation: text-glow 2s ease-in-out infinite alternate;
-}
-
-.cyrillic {
+/* 双语文字系统 */
+.russian-text {
     display: block;
     font-family: 'Times New Roman', serif;
+    font-size: 1.8rem;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px var(--steel-gray);
+}
+
+.chinese-text {
+    display: block;
+    font-size: 1.2rem;
+    margin-top: 0.5rem;
     color: var(--revolution-gold);
-    margin-bottom: 1rem;
 }
 
-.pulsating-divider {
+/* 动态分割线 */
+.revolution-divider {
     height: 3px;
-    background: var(--soviet-red);
-    width: 60%;
+    background: repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 5px,
+        var(--revolution-gold) 5px,
+        var(--revolution-gold) 10px
+    );
     margin: 2rem 0;
-    position: relative;
-    animation: divider-pulse 1.5s ease-in-out infinite;
 }
 
-/* 动态粒子背景 */
-.particle-canvas {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: -1;
+/* 标语走马灯 */
+.revolution-marquee {
+    background: var(--soviet-red);
+    padding: 1rem;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
-/* 关键帧动画 */
-@keyframes emblem-rotate {
+.revolution-marquee span {
+    display: inline-block;
+    padding-left: 100%;
+    animation: marquee 20s linear infinite;
+    font-family: 'Arial Narrow Bold', sans-serif;
+    text-transform: uppercase;
+}
+
+@keyframes hammer-swing {
+    0%, 100% { transform: rotate(45deg); }
+    50% { transform: rotate(35deg); }
+}
+
+@keyframes sickle-rotate {
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
 }
 
-@keyframes text-glow {
-    from { text-shadow: 0 0 10px var(--soviet-red); }
-    to { text-shadow: 0 0 30px var(--soviet-red); }
+@keyframes gear-spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(-360deg); }
 }
 
-@keyframes divider-pulse {
-    0% { opacity: 0.3; width: 40%; }
-    50% { opacity: 1; width: 60%; }
-    100% { opacity: 0.3; width: 40%; }
-}
-
-/* 响应式设计 */
-@media (max-width: 1200px) {
-    .soviet-sidebar {
-        transform: translateX(-100%);
-    }
-    
-    .soviet-sidebar.active {
-        transform: translateX(0);
-    }
-
-    .revolution-header {
-        margin-left: 0;
-        padding: 2rem;
-    }
+@keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
 }
