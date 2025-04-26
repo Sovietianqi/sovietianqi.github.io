@@ -1,1 +1,337 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sovietianqi - 无产阶级数字阵地</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --red: #8B0000;
+            --gold: #FFD700;
+            --dark: #1a1a1a;
+        }
 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Times New Roman', serif;
+        }
+
+        body {
+            background: linear-gradient(45deg, var(--red), #B22222);
+            color: var(--gold);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* 粒子背景 */
+        .particles {
+            position: fixed;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            background: rgba(255, 215, 0, 0.3);
+            border-radius: 50%;
+            animation: particle 10s infinite linear;
+        }
+
+        /* 响应式侧边栏 */
+        .soviet-sidebar {
+            position: fixed;
+            left: -250px;
+            top: 0;
+            width: 250px;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.95);
+            border-right: 3px solid var(--gold);
+            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+        }
+
+        .soviet-sidebar.active {
+            left: 0;
+        }
+
+        .sidebar-toggle {
+            position: fixed;
+            left: 20px;
+            top: 20px;
+            font-size: 2rem;
+            cursor: pointer;
+            z-index: 1001;
+            text-shadow: 2px 2px var(--red);
+            transition: 0.3s;
+        }
+
+        .sidebar-toggle:hover {
+            transform: rotate(90deg);
+        }
+
+        .nav-links {
+            padding: 2rem 1rem;
+        }
+
+        .nav-item {
+            padding: 1rem;
+            margin: 1rem 0;
+            background: rgba(139, 0, 0, 0.5);
+            border-left: 3px solid var(--gold);
+            transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-item:hover {
+            transform: translateX(10px);
+            background: var(--red);
+        }
+
+        /* 响应式布局 */
+        @media (min-width: 768px) {
+            .soviet-sidebar {
+                left: 0;
+            }
+            .content {
+                margin-left: 250px;
+            }
+            .sidebar-toggle {
+                display: none;
+            }
+        }
+
+        /* 头部样式 */
+        .soviet-header {
+            background: linear-gradient(45deg, rgba(0,0,0,0.9), rgba(50,0,0,0.9));
+            padding: 3rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 30px rgba(0,0,0,0.5);
+            margin-bottom: 2rem;
+        }
+
+        .soviet-header::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 25px,
+                rgba(255, 215, 0, 0.2) 25px,
+                rgba(255, 215, 0, 0.2) 50px
+            );
+            animation: shine 20s linear infinite;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            text-shadow: 3px 3px 0px var(--red);
+            position: relative;
+            margin-bottom: 1rem;
+        }
+
+        .hammer-sickle {
+            font-size: 4rem;
+            margin: 1rem;
+            animation: rotate 5s linear infinite;
+        }
+
+        /* 内容区域 */
+        .content {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: rgba(0, 0, 0, 0.8);
+            border: 3px solid var(--gold);
+            position: relative;
+            backdrop-filter: blur(5px);
+            transform: translateZ(0);
+        }
+
+        .revolution-card {
+            padding: 1.5rem;
+            margin: 1rem 0;
+            background: rgba(139, 0, 0, 0.5);
+            border-left: 5px solid var(--gold);
+            transition: 0.3s all cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .revolution-card:hover {
+            transform: translateX(10px);
+        }
+
+        .star-divider {
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .star-divider::before,
+        .star-divider::after {
+            content: "★";
+            margin: 0 1rem;
+            color: var(--gold);
+        }
+
+        /* 动画效果 */
+        @keyframes shine {
+            from { transform: translate(0, 0); }
+            to { transform: translate(50%, 50%); }
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes particle {
+            0% { transform: translateY(0) scale(0); opacity: 1; }
+            100% { transform: translateY(-100vh) scale(1); opacity: 0; }
+        }
+
+        @keyframes border-glow {
+            0% { border-color: var(--gold); box-shadow: 0 0 10px var(--gold); }
+            50% { border-color: var(--red); box-shadow: 0 0 20px var(--red); }
+            100% { border-color: var(--gold); box-shadow: 0 0 10px var(--gold); }
+        }
+
+        /* 底部标语 */
+        .propaganda-bar {
+            background: var(--red);
+            padding: 1rem;
+            text-align: center;
+            font-weight: bold;
+            border-top: 2px solid var(--gold);
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            white-space: nowrap;
+            animation: marquee 20s linear infinite;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+    </style>
+</head>
+<body>
+    <!-- 粒子背景 -->
+    <div class="particles" id="particles"></div>
+
+    <!-- 侧边栏 -->
+    <div class="sidebar-toggle">☭</div>
+    <nav class="soviet-sidebar">
+        <div class="nav-links">
+            <div class="nav-item" onclick="window.open('CR_DOCS.html', '_blank')">
+                <i class="fas fa-file-code"></i> CR语言技术文档
+            </div>
+            <div class="nav-item" onclick="window.open('RA2_MOD.html', '_blank')">
+                <i class="fas fa-cogs"></i> 红警2MOD开发
+            </div>
+            <div class="nav-item" onclick="window.open('https://github.com/sovietianqi', '_blank')">
+                <i class="fab fa-github"></i> GitHub仓库
+            </div>
+            <div class="nav-item" onclick="window.open('RSC_ENGINE.html', '_blank')">
+                <i class="fas fa-rocket"></i> RSC引擎开发
+            </div>
+            <div class="nav-item" onclick="window.open('CLOUD.html', '_blank')">
+                <i class="fas fa-cloud"></i> 无产阶级云盘
+            </div>
+            <div class="nav-item" onclick="window.open('LINKS.html', '_blank')">
+                <i class="fas fa-link"></i> 革命友谊链接
+            </div>
+        </div>
+    </nav>
+
+    <!-- 头部内容 -->
+    <header class="soviet-header">
+        <h1>SOVIETIANQI</h1>
+        <div class="hammer-sickle">⚒</div>
+        <h2>无产阶级数字先锋 | 赛博共产主义战士</h2>
+    </header>
+
+    <!-- 主内容 -->
+    <div class="content">
+        <div class="star-divider"></div>
+        
+        <div class="revolution-card">
+            <h3>革命宣言</h3>
+            <p>消灭数字霸权！打破技术垄断！建立网络苏维埃！</p>
+        </div>
+
+        <div class="revolution-card">
+            <h3>斗争领域</h3>
+            <p>• 开源革命软件开发<br>
+               • 数字集体主义实践<br>
+               • 网络公社建设<br>
+               • 算法民主化运动</p>
+        </div>
+
+        <div class="star-divider"></div>
+    </div>
+
+    <!-- 底部标语 -->
+    <div class="propaganda-bar">
+        <span>全世界无产者，联合起来！ | 代码属于工人阶级！ | 为数字集体主义而斗争！ | 消灭技术异化！</span>
+    </div>
+
+    <script>
+        // 粒子效果生成
+        function createParticles() {
+            const container = document.getElementById('particles');
+            for(let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + 'vw';
+                particle.style.width = particle.style.height = Math.random() * 5 + 'px';
+                particle.style.animationDelay = Math.random() * 10 + 's';
+                container.appendChild(particle);
+            }
+        }
+
+        // 侧边栏切换
+        document.querySelector('.sidebar-toggle').addEventListener('click', function() {
+            document.querySelector('.soviet-sidebar').classList.toggle('active');
+        });
+
+        // 窗口尺寸变化监听
+        window.addEventListener('resize', function() {
+            if(window.innerWidth >= 768) {
+                document.querySelector('.soviet-sidebar').classList.remove('active');
+            }
+        });
+
+        // 点击外部关闭侧边栏
+        document.addEventListener('click', function(event) {
+            const sidebar = document.querySelector('.soviet-sidebar');
+            const toggleBtn = document.querySelector('.sidebar-toggle');
+            if(!sidebar.contains(event.target) && !toggleBtn.contains(event.target)) {
+                sidebar.classList.remove('active');
+            }
+        });
+
+        // 页面加载初始化
+        window.onload = function() {
+            createParticles();
+            document.querySelector('.hammer-sickle').style.animation = 'rotate 5s linear infinite';
+        }
+    </script>
+</body>
+</html>
