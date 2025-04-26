@@ -3,50 +3,203 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>技术委员会</title>
-    <link rel="stylesheet" href="./Style.css">
+    <title>Sovietianqi - 技术阵地</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --red: #CC0000;
+            --gold: #FFD700;
+            --gray: #2C2C2C;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Playfair Display', 'Noto Sans SC', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(45deg, #1a1a1a, #2a2a2a);
+            color: #fff;
+            min-height: 100vh;
+        }
+
+        /* 侧边栏样式 */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 250px;
+            height: 100%;
+            background: rgba(44, 44, 44, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-right: 3px solid var(--red);
+            transition: 0.3s;
+        }
+
+        .sidebar-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .sidebar-header h1 {
+            color: var(--red);
+            font-size: 2em;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .nav-links {
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin: 15px 0;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.1em;
+            display: block;
+            padding: 12px;
+            border-radius: 5px;
+            transition: 0.3s;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            background: var(--red);
+            transform: translateX(10px);
+        }
+
+        .nav-links a i {
+            margin-right: 10px;
+            width: 25px;
+        }
+
+        /* 主内容区域 */
+        .main-content {
+            margin-left: 250px;
+            padding: 40px;
+            min-height: 100vh;
+        }
+
+        .section {
+            background: rgba(44, 44, 44, 0.9);
+            border: 2px solid var(--red);
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 0 20px rgba(204,0,0,0.2);
+        }
+
+        h2 {
+            color: var(--red);
+            border-left: 5px solid var(--gold);
+            padding-left: 15px;
+            margin-bottom: 20px;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+                border-right: none;
+                border-bottom: 3px solid var(--red);
+            }
+
+            .main-content {
+                margin-left: 0;
+                padding: 20px;
+            }
+
+            .nav-links {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .nav-links li {
+                margin: 10px;
+            }
+
+            .nav-links a:hover {
+                transform: translateY(5px);
+            }
+        }
+
+        /* 特效 */
+        .soviet-star {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            font-size: 3em;
+            color: var(--red);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        code {
+            background: rgba(204,0,0,0.2);
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+        }
+    </style>
 </head>
 <body>
     <!-- 侧边栏 -->
-    <nav class="soviet-nav">
-        <!-- 动态 -->
-        <div class="party-emblem">
-            <div class="hammer"></div>
-            <div class="sickle"></div>
-            <div class="gear"></div>
+    <nav class="sidebar">
+        <div class="sidebar-header">
+            <h1>Sovietianqi</h1>
+            <p>技术阵地</p>
         </div>
-        
-        <!-- 导航系统 -->
-        <div class="revolution-menu">
-            <a href="./cr.html" class="nav-item pulsate">
-                <span class="russian-text">CRЯЗЫК</span>
-                <span class="chinese-text">CR语言规范</span>
-            </a>
-            
-            <a href="#mod" class="nav-item pulsate">
-                <span class="russian-text">МОДЫ</span>
-                <span class="chinese-text">红警2MOD开发</span>
-            </a>
-
-            <a href="#github" class="nav-item pulsate">
-                <span class="russian-text">КОДБАЗА</span>
-                <span class="chinese-text">GitHub仓库</span>
-            </a>
-
-            <a href="#engine" class="nav-item pulsate">
-                <span class="russian-text">ДВИГАТЕЛЬ</span>
-                <span class="chinese-text">RSC引擎开发</span>
-            </a>
-
-            <div class="revolution-divider"></div>
-
-            <!-- 动态标语 -->
-            <div class="revolution-marquee">
-                <span>Пролетарии всех стран, соединяйтесь! 全世界无产者联合起来！</span>
-            </div>
-        </div>
+        <ul class="nav-links">
+            <li><a href="#cr-language"><i class="fas fa-code"></i>CR语言</a></li>
+            <li><a href="#rsc-engine"><i class="fas fa-cogs"></i>RSC扩展引擎</a></li>
+            <li><a href="#ra2-mod"><i class="fas fa-gamepad"></i>红警2MOD开发</a></li>
+            <li><a href="https://github.com" target="_blank"><i class="fab fa-github"></i>GitHub</a></li>
+            <li><a href="#cloud"><i class="fas fa-cloud"></i>云盘</a></li>
+        </ul>
     </nav>
 
-    <script src="./main.js"></script>
+    <!-- 主内容 -->
+    <main class="main-content">
+        <div class="section">
+            <h2>欢迎来到技术阵地</h2>
+            <p>这里是苏维埃精神与现代计算机科学的完美结合！</p>
+            <p>>_ 正在初始化革命协议...</p>
+            <code>system.status = "READY_FOR_REVOLUTION";</code>
+        </div>
+
+        <div class="section" id="cr-language">
+            <h2>CR语言</h2>
+            <p>面向集体主义的革命性编程语言</p>
+            <code>collective void revolution() { /* 代码 */ }</code>
+        </div>
+
+        <div class="section" id="rsc-engine">
+            <h2>RSC扩展引擎</h2>
+            <p>分布式计算框架的苏维埃式实现</p>
+        </div>
+
+        <div class="section" id="ra2-mod">
+            <h2>红警2MOD开发</h2>
+            <p>重现钢铁洪流的数字战场</p>
+        </div>
+
+        <i class="fas fa-star soviet-star"></i>
+    </main>
 </body>
 </html>
