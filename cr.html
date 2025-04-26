@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CR 1.0 - 现代系统级编程语言</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/styles/vs2015.min.css">
+    <title>CR 1.0 - 下一代系统编程语言</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/vs2015.min.css">
     <style>
         :root {
             --primary: #2baeff;
@@ -14,6 +14,7 @@
             --text: #e0e0e0;
         }
 
+        /* 保持原有基础样式... */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -28,89 +29,71 @@
             scroll-behavior: smooth;
         }
 
-        /* 导航栏 */
+        /* 改进的导航栏 */
         .navbar {
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(0, 0, 0, 0.9);
+            background: rgba(0, 0, 0, 0.95);
             padding: 1rem;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(12px);
             z-index: 1000;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
         }
 
         .nav-links {
             display: flex;
-            gap: 2rem;
+            gap: 1.5rem;
             justify-content: center;
             flex-wrap: wrap;
         }
 
         .nav-links a {
-            color: white;
+            color: rgba(255,255,255,0.9);
             text-decoration: none;
             font-weight: 500;
-            transition: color 0.3s;
+            transition: all 0.3s;
             padding: 0.5rem 1rem;
-            border-radius: 6px;
+            border-radius: 8px;
+            white-space: nowrap;
         }
 
         .nav-links a:hover {
-            background: rgba(43, 174, 255, 0.1);
+            background: rgba(43, 174, 255, 0.15);
+            transform: translateY(-2px);
         }
 
-        /* 主内容区 */
+        /* 增强的主内容区 */
         .hero {
-            padding: 10rem 2rem 4rem;
+            padding: 12rem 2rem 6rem;
             text-align: center;
-            background: linear-gradient(45deg, #0a0a0a, #1a1a1a);
+            background: linear-gradient(45deg, #0a0a0a 30%, #1a1a1a 100%);
         }
 
         .hero h1 {
-            font-size: 3.5rem;
+            font-size: clamp(2.5rem, 6vw, 4rem);
             margin-bottom: 1.5rem;
             background: linear-gradient(to right, var(--primary), var(--accent));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            line-height: 1.2;
         }
 
         .section {
-            max-width: 1200px;
+            max-width: 1300px;
             margin: 4rem auto;
             padding: 2rem;
         }
 
-        /* 特性网格布局 */
+        /* 响应式特性网格 */
         .feature-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr));
             gap: 2rem;
             padding: 2rem 0;
         }
 
-        /* 渐变边框卡片 */
-        .feature-card {
-            position: relative;
-            background: var(--dark-bg);
-            border-radius: 12px;
-            padding: 2rem;
-            overflow: hidden;
-        }
-
-        .feature-card::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            padding: 2px;
-            background: linear-gradient(45deg, var(--primary), var(--accent));
-            -webkit-mask: 
-                linear-gradient(#fff 0 0) content-box, 
-                linear-gradient(#fff 0 0);
-            mask-composite: exclude;
-            border-radius: 12px;
-        }
-
-        /* 代码块样式 */
+        /* 增强的代码块样式 */
         .code-block {
             background: var(--code-bg);
             padding: 1.5rem;
@@ -118,70 +101,171 @@
             margin: 1.5rem 0;
             font-family: 'Fira Code', monospace;
             overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
         }
 
-        .code-keyword { color: #ff79c6; }
-        .code-type { color: #8be9fd; }
-        .code-string { color: #f1fa8c; }
-        .code-comment { color: #6272a4; }
+        .code-block::-webkit-scrollbar {
+            height: 8px;
+            background: rgba(0,0,0,0.2);
+        }
 
-        /* 响应式设计 */
+        .code-block::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 4px;
+        }
+
+        /* 动态特性卡片 */
+        .feature-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+
+        /* 新增特性标签 */
+        .feature-tag {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            background: rgba(43, 174, 255, 0.15);
+            color: var(--primary);
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        /* 响应式优化 */
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2.5rem; }
-            .nav-links { gap: 1rem; }
+            .hero {
+                padding: 8rem 1rem 4rem;
+            }
+            
+            .nav-links {
+                gap: 0.8rem;
+                justify-content: flex-start;
+                overflow-x: auto;
+                padding-bottom: 0.5rem;
+            }
+            
+            .feature-card {
+                padding: 1.5rem;
+            }
+        }
+        /* 新增特性分类标识 */
+        .feature-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.3rem 0.8rem;
+            background: rgba(43, 174, 255, 0.15);
+            color: var(--primary);
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-badge::before {
+            content: "✦";
+            margin-right: 0.5rem;
         }
     </style>
 </head>
 <body>
     <nav class="navbar">
         <div class="nav-links">
-            <a href="#memory">内存安全</a>
-            <a href="#concurrency">并发模型</a>
-            <a href="#syntax">现代语法</a>
+            <a href="#memory">内存管理</a>
+            <a href="#ownership">所有权</a>
+            <a href="#concurrency">并发</a>
+            <a href="#syntax">语法</a>
             <a href="#system">系统编程</a>
+            <a href="#events">事件系统</a>
             <a href="#tools">工具链</a>
         </div>
     </nav>
 
     <header class="hero">
         <h1>CR 语言 1.0</h1>
-        <p>在C++的基石上构建现代化系统编程体验</p>
+        <p>安全与性能的终极统一</p>
         <div style="margin-top: 2rem;">
-            <button style="background: var(--primary); padding: 1rem 2rem; border: none; border-radius: 6px; cursor: pointer;">
-                立即安装
-            </button>
+            <button class="cta-button">立即安装</button>
         </div>
     </header>
 
-    <!-- 内存安全 -->
+    <!-- 内存管理 -->
     <section id="memory" class="section">
-        <h2>🛡️ 内存安全系统</h2>
+        <h2><span class="feature-badge">内存安全</span> 精准控制每一字节</h2>
         <div class="feature-grid">
             <div class="feature-card">
                 <h3>三级指针体系</h3>
                 <div class="code-block">
-                    <pre><code><span class="code-keyword">safe</span> {
-    <span class="code-comment">// 独占所有权指针</span>
-    <span class="code-keyword">own</span>&lt;vector&lt;int&gt;&gt; data = own_new&lt;vector&lt;int&gt;&gt;(100);
-    
-    <span class="code-comment">// 安全借用</span>
-    <span class="code-keyword">borrow</span> &lt;mut int&gt; item = data[0];
-    
-    <span class="code-comment">// 跨域转换</span>
-    legacy_ptr&lt;int&gt; raw = data.leak_unsafe();
-}</code></pre>
+                    <pre><code class="language-cpp">// 传统指针（需显式标记）
+legacy {
+    legacy_ptr&lt;int&gt; raw = legacy_new&lt;int&gt;(42);
+}
+
+// 安全指针（默认启用检查）
+safe {
+    checked_ptr&lt;int&gt; safe_ptr = checked_new&lt;int&gt;(100);
+    *safe_ptr = 200;  // 自动边界检查
+}
+
+// 所有权指针
+own&lt;vector&lt;int&gt;&gt; data = own_new&lt;vector&lt;int&gt;&gt;(1000);</code></pre>
                 </div>
             </div>
 
             <div class="feature-card">
-                <h3>混合垃圾回收</h3>
+                <h3>混合内存回收</h3>
                 <div class="code-block">
-                    <pre><code><span class="code-keyword">gc</span> --mode=generational {
+                    <pre><code class="language-cpp">// 分代GC模式（默认）
+gc --mode=generational {
     Gc&lt;Connection&gt; conn = gc_new&lt;Connection&gt;();
+}
+
+// 手动与GC混合管理
+own&lt;Socket&gt; sock = own_new&lt;Socket&gt;();
+gc_adopt(sock.release());</code></pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 所有权系统 -->
+    <section id="ownership" class="section">
+        <h2><span class="feature-badge">所有权模型</span> 零成本内存安全</h2>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <h3>生命周期追踪</h3>
+                <div class="code-block">
+                    <pre><code class="language-cpp">// 所有权转移
+own&lt;Data&gt; source = own_new&lt;Data&gt;();
+own&lt;Data&gt; dest = move(source);  // source在此失效
+
+// 借用检查
+borrow&lt;Data&gt; view = *dest;
+// borrow&lt;mut Data&gt; mut_view = *dest; // 编译错误</code></pre>
+                </div>
+            </div>
+
+            <div class="feature-card">
+                <h3>跨域交互协议</h3>
+                <div class="code-block">
+                    <pre><code class="language-cpp">safe {
+    own&lt;Buffer&gt; buf = own_new&lt;Buffer&gt;();
     
-    <span class="code-comment">// 混合内存管理</span>
-    own&lt;Socket&gt; sock = own_new&lt;Socket&gt;();
-    gc_adopt(sock.release());
+    legacy {
+        // 显式不安全转换
+        legacy_ptr&lt;Buffer&gt; raw = buf.leak_unsafe(
+            file: __FILE__,
+            line: __LINE__
+        );
+        legacy_process(raw);
+    }
 }</code></pre>
                 </div>
             </div>
@@ -190,21 +274,21 @@
 
     <!-- 并发模型 -->
     <section id="concurrency" class="section">
-        <h2>⚡ 并发与并行</h2>
+        <h2><span class="feature-badge">并发模型</span> 高效并行处理</h2>
         <div class="feature-grid">
             <div class="feature-card">
                 <h3>结构化并发</h3>
                 <div class="code-block">
-                    <pre><code><span class="code-keyword">async</span> scope {
-    <span class="code-keyword">let</span> task1 = co_spawn fetch_data();
+                    <pre><code class="language-cpp">async scope {
+    let task1 = co_spawn fetch_data();
     Chan&lt;int&gt; pipe(10);
     
-    <span class="code-keyword">par</span> {
+    par {
         pipe.send(co_await task1);
         process(pipe.recv().unwrap());
     }
     
-    <span class="code-keyword">-></span> merge(task1) {
+    -> merge(task1) {
         log!("任务完成");
     }
 }</code></pre>
@@ -214,11 +298,11 @@
             <div class="feature-card">
                 <h3>无锁编程</h3>
                 <div class="code-block">
-                    <pre><code>LockFreeMap&lt;int, string&gt; cache;
+                    <pre><code class="language-cpp">LockFreeMap&lt;int, string&gt; cache;
 
-<span class="code-keyword">atomic</span> {
+atomic {
     cache.insert(42, "answer");
-    <span class="code-keyword">if</span> (let Some(val) = cache.get(42)) {
+    if (let Some(val) = cache.get(42)) {
         process(val);
     }
 }</code></pre>
@@ -227,134 +311,9 @@
         </div>
     </section>
 
-    <!-- 现代语法 -->
-    <section id="syntax" class="section">
-        <h2>✨ 现代化语法</h2>
+    <!-- 事件系统 -->
+    <section id="events" class="section">
+        <h2><span class="feature-badge">事件系统</span> 类型安全通信</h2>
         <div class="feature-grid">
             <div class="feature-card">
-                <h3>模式匹配</h3>
-                <div class="code-block">
-                    <pre><code><span class="code-keyword">match</span> (sensor.read()) {
-    Ok(Point{ x: 0..100, y }) 
-        <span class="code-keyword">if</span> y < 50 => activate_safety(),
-    Err(SensorError::Timeout) => retry(3),
-    _ => emergency_stop()
-}</code></pre>
-                </div>
-            </div>
-
-            <div class="feature-card">
-                <h3>委托事件系统</h3>
-                <div class="code-block">
-                    <pre><code>event ClickEvent = multicast delegate&lt;void(int, int)&gt;;
-
-<span class="code-keyword">safe</span> {
-    Button btn;
-    btn.clicked += [](int x, int y) {
-        println!("点击坐标: ({}, {})", x, y);
-    };
-    
-    <span class="code-keyword">async</span> {
-        co_await btn.listen();
-    };
-}</code></pre>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 系统编程 -->
-    <section id="system" class="section">
-        <h2>🔧 系统级编程</h2>
-        <div class="feature-grid">
-            <div class="feature-card">
-                <h3>内联汇编</h3>
-                <div class="code-block">
-                    <pre><code>[[naked]]
-<span class="code-keyword">fn</span> void interrupt_handler() {
-    asm!(
-        "pusha",
-        "mov eax, [esp+32]",
-        "call cr_handler",
-        "popa",
-        "iret",
-        options(noreturn)
-}</code></pre>
-                </div>
-            </div>
-
-            <div class="feature-card">
-                <h3>硬件交互</h3>
-                <div class="code-block">
-                    <pre><code><span class="code-comment">// 内存映射IO</span>
-volatile register&lt;u32&gt; GPIO = 0xFE200000;
-
-<span class="code-comment">// DMA控制</span>
-dma::transfer(src, dest, 1024, 
-    dma::Direction::MemToDev,
-    dma::Priority::High
-);</code></pre>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 工具链 -->
-    <section id="tools" class="section">
-        <h2>🛠️ 开发者工具链</h2>
-        <div class="feature-grid">
-            <div class="feature-card">
-                <h3>编译命令</h3>
-                <div class="code-block">
-                    <pre><code><span class="code-comment"># 安全优先模式</span>
-$ crc --safe-mode=strict \
-      --gc=generational \
-      --analyze-ownership \
-      -O3 app.cr -o release.bin</code></pre>
-                </div>
-            </div>
-
-            <div class="feature-card">
-                <h3>迁移工具</h3>
-                <div class="code-block">
-                    <pre><code><span class="code-comment"># 转换传统C++代码</span>
-$ crc --convert-pointers=smart \
-      --annotate-legacy \
-      legacy_app.cpp \
-      -o modern.cr</code></pre>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer style="text-align: center; padding: 3rem; border-top: 1px solid #363636;">
-        <p>© 2027 CR 语言标准委员会 | 在安全与性能的刀锋上舞蹈</p>
-    </footer>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/highlight.min.js"></script>
-    <script>
-        // 初始化代码高亮
-        hljs.highlightAll();
-
-        // 平滑滚动
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                target.scrollIntoView({ behavior: 'smooth' });
-            });
-        });
-
-        // 动态卡片效果
-        document.querySelectorAll('.feature-card').forEach(card => {
-            card.addEventListener('mousemove', (e) => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                card.style.setProperty('--mouse-x', `${x}px`);
-                card.style.setProperty('--mouse-y', `${y}px`);
-            });
-        });
-    </script>
-</body>
-</html>
+                <
