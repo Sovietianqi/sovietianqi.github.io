@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CR 语言 - 现代系统级编程新标准</title>
+    <style>
+        :root {
+            --primary: #2baeff;
+            --dark-bg: #1a1a1a;
+            --code-bg: #2d2d2d;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+
+        body {
+            background: var(--dark-bg);
+            color: #e0e0e0;
+            line-height: 1.6;
+        }
+
+        /* 导航栏 */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            padding: 1rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        /* 主内容区 */
+        .hero {
+            padding: 8rem 2rem 4rem;
+            text-align: center;
+            background: linear-gradient(45deg, #0a0a0a, #1a1a1a);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, #2baeff, #00ff88);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 2rem;
+        }
+
+        .feature-card {
+            background: #252525;
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 1px solid #363636;
+        }
+
+        /* 代码展示 */
+        .code-block {
+            background: var(--code-bg);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            font-family: 'Fira Code', monospace;
+            overflow-x: auto;
+        }
+
+        .code-keyword { color: #ff79c6; }
+        .code-type { color: #8be9fd; }
+        .code-string { color: #f1fa8c; }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .nav-links {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-links">
+            <a href="#features">核心特性</a>
+            <a href="#syntax">语法示例</a>
+            <a href="#download">下载</a>
+            <a href="#docs">文档</a>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <h1>CR 语言 4.0</h1>
+        <p>在 C++ 的土壤中生长出新的安全生态</p>
+        <div style="margin-top: 2rem;">
+            <button style="background: var(--primary); padding: 1rem 2rem; border: none; border-radius: 6px; cursor: pointer;">
+                立即体验
+            </button>
+        </div>
+    </header>
+
+    <section id="features" class="section">
+        <h2>革命性特性</h2>
+        
+        <div class="feature-card">
+            <h3>混合内存管理</h3>
+            <div class="code-block">
+                <pre><code>// 安全域内存管理
+<span class="code-keyword">safe</span> {
+    <span class="code-keyword">own</span>&lt;vector&lt;int&gt;&gt; data = own_new&lt;vector&lt;int&gt;&gt;(100);
+    <span class="code-keyword">borrow</span> &lt;mut int&gt; item = data[0]; <span class="code-comment">// 编译期检查</span>
+}</code></pre>
+            </div>
+        </div>
+
+        <div class="feature-card">
+            <h3>结构化并发</h3>
+            <div class="code-block">
+                <pre><code><span class="code-keyword">async</span> scope {
+    <span class="code-keyword">let</span> task1 = co_spawn fetch_data();
+    <span class="code-keyword">let</span> task2 = co_spawn process_stream();
+    
+    <span class="code-keyword">-></span> merge(task1, task2) {
+        println!(<span class="code-string">"All tasks completed"</span>);
+    }
+}</code></pre>
+            </div>
+        </div>
+    </section>
+
+    <section id="syntax" class="section">
+        <h2>现代化语法</h2>
+        
+        <div class="feature-card">
+            <h3>模式匹配</h3>
+            <div class="code-block">
+                <pre><code><span class="code-keyword">match</span> (result) {
+    Ok(<span class="code-type">var</span> value) => process(value),
+    Err(Error::Timeout) => retry(),
+    _ => panic!(<span class="code-string">"Unexpected"</span>)
+}</code></pre>
+            </div>
+        </div>
+    </section>
+
+    <footer style="text-align: center; padding: 3rem; border-top: 1px solid #363636;">
+        <p>© 2027 CR 语言标准委员会 | 在安全与性能的刀锋上舞蹈</p>
+    </footer>
+
+    <!-- 代码高亮 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/styles/vs2015.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>
