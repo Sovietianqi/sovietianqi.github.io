@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CR 1.0 - 下一代系统编程语言</title>
+    <title>CR 4.0 - 现代化系统编程语言</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/vs2015.min.css">
     <style>
         :root {
@@ -14,7 +14,6 @@
             --text: #e0e0e0;
         }
 
-        /* 保持原有基础样式... */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -157,163 +156,237 @@
                 padding: 1.5rem;
             }
         }
-        /* 新增特性分类标识 */
-        .feature-badge {
-            display: inline-flex;
-            align-items: center;
-            padding: 0.3rem 0.8rem;
-            background: rgba(43, 174, 255, 0.15);
-            color: var(--primary);
-            border-radius: 20px;
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-        }
-
-        .feature-badge::before {
-            content: "✦";
-            margin-right: 0.5rem;
-        }
     </style>
-</head>
-<body>
+</head><body>
+    <!-- 导航栏新增语法基础部分 -->
     <nav class="navbar">
         <div class="nav-links">
-            <a href="#memory">内存管理</a>
-            <a href="#ownership">所有权</a>
-            <a href="#concurrency">并发</a>
-            <a href="#syntax">语法</a>
+            <a href="#basic">基础语法</a>
+            <a href="#memory">内存模型</a>
+            <a href="#concurrency">并发模型</a>
+            <a href="#syntax">高级语法</a>
             <a href="#system">系统编程</a>
-            <a href="#events">事件系统</a>
-            <a href="#tools">工具链</a>
         </div>
     </nav>
 
-    <header class="hero">
-        <h1>CR 语言 1.0</h1>
-        <p>安全与性能的终极统一</p>
-        <div style="margin-top: 2rem;">
-            <button class="cta-button">立即安装</button>
-        </div>
-    </header>
+    <!-- 基础语法部分 -->
+    <section id="basic" class="section">
+        <h2>📖 基础语法</h2>
 
-    <!-- 内存管理 -->
-    <section id="memory" class="section">
-        <h2><span class="feature-badge">内存安全</span> 精准控制每一字节</h2>
-        <div class="feature-grid">
-            <div class="feature-card">
-                <h3>三级指针体系</h3>
-                <div class="code-block">
-                    <pre><code class="language-cpp">// 传统指针（需显式标记）
-legacy {
-    legacy_ptr&lt;int&gt; raw = legacy_new&lt;int&gt;(42);
-}
+        <div class="feature-card">
+            <h3>安全域（Safe/Legacy Blocks）</h3>
+            <div class="code-block">
+                <pre><code class="language-cpp">// 默认代码处于legacy模式（兼容C++）
+int* raw = new int(42);  // 传统指针
 
-// 安全指针（默认启用检查）
+<span class="code-comment">// 显式安全域（启用内存安全检查）</span>
 safe {
-    checked_ptr&lt;int&gt; safe_ptr = checked_new&lt;int&gt;(100);
-    *safe_ptr = 200;  // 自动边界检查
-}
-
-// 所有权指针
-own&lt;vector&lt;int&gt;&gt; data = own_new&lt;vector&lt;int&gt;&gt;(1000);</code></pre>
-                </div>
+    <span class="code-keyword">own</span>&lt;int&gt; sp = own_new&lt;int&gt;(100);  // 安全指针
+    <span class="code-keyword">borrow</span>&lt;int&gt; br = *sp;           // 借用检查
+    
+    <span class="code-comment">// 跨域交互需要显式标记</span>
+    legacy_ptr&lt;int&gt; unsafe_ptr = sp.leak_unsafe();
+}</code></pre>
             </div>
+            <p><strong>语义解释：</strong></p>
+            <ul>
+                <li><code>safe{}</code>：启用编译期内存安全检查，强制使用所有权系统</li>
+                <li><code>legacy{}</code>：传统C++模式，仅运行时基础检查</li>
+                <li>跨域指针传递需使用<code>legacy_ptr&lt;T&gt;</code>包装</li>
+            </ul>
+        </div>
 
-            <div class="feature-card">
-                <h3>混合内存回收</h3>
-                <div class="code-block">
-                    <pre><code class="language-cpp">// 分代GC模式（默认）
-gc --mode=generational {
-    Gc&lt;Connection&gt; conn = gc_new&lt;Connection&gt;();
-}
+        <div class="feature-card">
+            <h3>所有权系统</h3>
+            <div class="code-block">
+                <pre><code class="language-cpp"><span class="code-keyword">own</span>&lt;T&gt;</span>：独占所有权指针
+<span class="code-keyword">shared</span>&lt;T&gt;</span>：共享所有权指针
+<span class="code-keyword">borrow</span>&lt;T&gt;</span>：不可变借用
+<span class="code-keyword">borrow mut</span>&lt;T&gt;</span>：可变借用
 
-// 手动与GC混合管理
-own&lt;Socket&gt; sock = own_new&lt;Socket&gt;();
-gc_adopt(sock.release());</code></pre>
-                </div>
+safe {
+    <span class="code-keyword">own</span>&lt;Data&gt; d1 = own_new&lt;Data&gt;();
+    <span class="code-keyword">own</span>&lt;Data&gt; d2 = move(d1);  // 所有权转移
+    
+    <span class="code-keyword">borrow</span>&lt;Data&gt; view = *d2;  // 只读借用
+    <span class="code-keyword">borrow mut</span>&lt;Data&gt; mut_view = *d2;  // 可变借用
+    
+    <span class="code-comment">// 错误示例：同时存在可变和不可变借用</span>
+    <span class="code-comment">// borrow&lt;Data&gt; another_view = *d2;</span>
+}</code></pre>
             </div>
+            <p><strong>核心规则：</strong></p>
+            <ul>
+                <li>任意时刻只能有一个可变借用或多个不可变借用</li>
+                <li>所有权转移后原指针立即失效</li>
+                <li>借用生命周期不得超过所有者</li>
+            </ul>
         </div>
     </section>
 
-    <!-- 所有权系统 -->
-    <section id="ownership" class="section">
-        <h2><span class="feature-badge">所有权模型</span> 零成本内存安全</h2>
-        <div class="feature-grid">
-            <div class="feature-card">
-                <h3>生命周期追踪</h3>
-                <div class="code-block">
-                    <pre><code class="language-cpp">// 所有权转移
-own&lt;Data&gt; source = own_new&lt;Data&gt;();
-own&lt;Data&gt; dest = move(source);  // source在此失效
+    <!-- 内存管理 -->
+    <section id="memory" class="section">
+        <h2>🧠 内存模型</h2>
 
-// 借用检查
-borrow&lt;Data&gt; view = *dest;
-// borrow&lt;mut Data&gt; mut_view = *dest; // 编译错误</code></pre>
-                </div>
-            </div>
+        <div class="feature-card">
+            <h3>混合垃圾回收</h3>
+            <div class="code-block">
+                <pre><code class="language-cpp">// 分代GC（默认模式）
+gc {
+    Gc&lt;Node&gt; node = gc_new&lt;Node&gt;();  // 自动管理
+    node-&gt;link(other_node);
+}
 
-            <div class="feature-card">
-                <h3>跨域交互协议</h3>
-                <div class="code-block">
-                    <pre><code class="language-cpp">safe {
-    own&lt;Buffer&gt; buf = own_new&lt;Buffer&gt;();
-    
-    legacy {
-        // 显式不安全转换
-        legacy_ptr&lt;Buffer&gt; raw = buf.leak_unsafe(
-            file: __FILE__,
-            line: __LINE__
-        );
-        legacy_process(raw);
+// 手动与GC混合管理
+safe {
+    own&lt;Connection&gt; conn = own_new&lt;Connection&gt;();
+    gc {
+        Gc&lt;Session&gt; session = gc_adopt(conn.release());
     }
 }</code></pre>
-                </div>
             </div>
+            <p><strong>GC模式：</strong></p>
+            <table>
+                <tr><th>模式</th><th>启动参数</th><th>特征</th></tr>
+                <tr><td>分代GC</td><td>--gc=generational</td><td>年轻代/老年代划分</td></tr>
+                <tr><td>增量GC</td><td>--gc=incremental</td><td>低延迟回收</td></tr>
+                <tr><td>区域GC</td><td>--gc=regional</td><td>堆内存分区管理</td></tr>
+            </table>
         </div>
     </section>
 
     <!-- 并发模型 -->
     <section id="concurrency" class="section">
-        <h2><span class="feature-badge">并发模型</span> 高效并行处理</h2>
-        <div class="feature-grid">
-            <div class="feature-card">
-                <h3>结构化并发</h3>
-                <div class="code-block">
-                    <pre><code class="language-cpp">async scope {
-    let task1 = co_spawn fetch_data();
+        <h2>⚡ 并发模型</h2>
+
+        <div class="feature-card">
+            <h3>结构化并发</h3>
+            <div class="code-block">
+                <pre><code class="language-cpp">async scope {
+    let task1 = co_spawn fetch_data("url1");
+    let task2 = co_spawn process_stream();
+
+    <span class="code-comment">// 安全通道</span>
     Chan&lt;int&gt; pipe(10);
     
     par {
+        <span class="code-comment">// 生产者</span>
         pipe.send(co_await task1);
-        process(pipe.recv().unwrap());
+        
+        <span class="code-comment">// 消费者</span>
+        if (let Some(data) = pipe.recv()) {
+            process(data);
+        }
     }
-    
-    -> merge(task1) {
-        log!("任务完成");
-    }
-}</code></pre>
-                </div>
-            </div>
 
-            <div class="feature-card">
-                <h3>无锁编程</h3>
-                <div class="code-block">
-                    <pre><code class="language-cpp">LockFreeMap&lt;int, string&gt; cache;
-
-atomic {
-    cache.insert(42, "answer");
-    if (let Some(val) = cache.get(42)) {
-        process(val);
+    <span class="code-comment">// 显式合并点</span>
+    -> merge(task1, task2) {
+        log::info("所有任务完成");
     }
-}</code></pre>
-                </div>
+} <span class="code-comment">// 自动等待子任务</span></code></pre>
             </div>
+            <p><strong>核心组件：</strong></p>
+            <ul>
+                <li><code>async scope</code>：定义并发作用域</li>
+                <li><code>co_spawn</code>：启动协程任务</li>
+                <li><code>par</code>：并行执行块</li>
+                <li><code>Chan&lt;T&gt;</code>：多生产者多消费者通道</li>
+            </ul>
         </div>
     </section>
 
-    <!-- 事件系统 -->
-    <section id="events" class="section">
-        <h2><span class="feature-badge">事件系统</span> 类型安全通信</h2>
-        <div class="feature-grid">
-            <div class="feature-card">
-                <
+    <!-- 高级语法 -->
+    <section id="syntax" class="section">
+        <h2>🔮 高级语法</h2>
+
+        <div class="feature-card">
+            <h3>模式匹配</h3>
+            <div class="code-block">
+                <pre><code class="language-cpp">enum Result&lt;T, E&gt; { Ok(T), Err(E) };
+
+fn process(res: Result&lt;i32, String&gt;) {
+    match (res) {
+        Ok(var value) if value > 0 => {
+            println!("正值: {}", value);
+        }
+        Ok(0..=100) => {
+            println!("范围值");
+        }
+        Err(var msg) => {
+            log::error("错误: {}", msg);
+        }
+        _ => panic!("未处理的情况");
+    }
+}</code></pre>
+            </div>
+            <p><strong>匹配模式：</strong></p>
+            <ul>
+                <li>类型匹配：<code>Ok(var x)</code></li>
+                <li>范围匹配：<code>0..100</code></li>
+                <li>条件守卫：<code>if value > 0</code></li>
+                <li>通配符：<code>_</code></li>
+            </ul>
+        </div>
+
+        <div class="feature-card">
+            <h3>委托与事件</h3>
+            <div class="code-block">
+                <pre><code class="language-cpp">// 类型安全委托
+delegate void Logger(string msg);
+
+// 多播事件
+event ClickEvent = multicast&lt;Logger&gt;;
+
+class Button {
+    event ClickEvent clicked;
+    
+    void press() {
+        clicked.invoke("按钮点击");
+    }
+}
+
+// 订阅事件
+safe {
+    Button btn;
+    btn.clicked += [](string msg) {
+        println!("事件: {}", msg);
+    };
+}</code></pre>
+            </div>
+            <p><strong>事件规则：</strong></p>
+            <ul>
+                <li>自动管理订阅者生命周期</li>
+                <li>线程安全的调用机制</li>
+                <li>支持协程异步事件</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- 系统编程 -->
+    <section id="system" class="section">
+        <h2>🖥️ 系统编程</h2>
+
+        <div class="feature-card">
+            <h3>内联汇编</h3>
+            <div class="code-block">
+                <pre><code class="language-cpp">[[naked]]
+fn void syscall_entry() {
+    asm!(
+        "pusha",
+        "mov eax, [esp+32]",
+        "call cr_syscall_handler",
+        "popa",
+        "iret",
+        options(noreturn)
+}</code></pre>
+            </div>
+            <p><strong>嵌入规则：</strong></p>
+            <ul>
+                <li><code>[[naked]]</code>：禁止编译器生成额外代码</li>
+                <li><code>asm!</code>宏支持AT&amp;T/Intel语法</li>
+                <li>必须显式声明寄存器使用</li>
+            </ul>
+        </div>
+    </section>
+</body>
+</html>
