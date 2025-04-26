@@ -1,158 +1,141 @@
-/* 基础样式 */
-:root {
-    --primary: #d32f2f;    /* 现代红 */
-    --secondary: #ffd740;  /* 琥珀色 */
-    --dark: #212121;       /* 深灰 */
-    --cyber: #00e676;      /* 电子绿 */
-    --background: #1a1a1a; /* 暗黑背景 */
-}
+        :root {
+            --soviet-red: #c41e3a;    /* 标准苏维埃红 */
+            --revolution-gold: #ffd700; /* 金色 */
+            --industrial-gray: #2d2d2d; /* 工业深灰 */
+            --propaganda-blue: #0039a6; /* 宣传蓝色 */
+        }
 
-body {
-    background: var(--background);
-    color: #fff;
-    font-family: 'Roboto', 'Noto Sans SC', sans-serif;
-    line-height: 1.6;
-    overflow-x: hidden;
-}
+        body {
+            background: radial-gradient(circle at center, 
+                var(--industrial-gray) 0%, 
+                #1a1a1a 100%);
+            color: #fff;
+            font-family: 'Roboto Condensed', 'Noto Sans SC', sans-serif;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
 
-/* 现代导航系统 */
-.cyber-nav {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    background: rgba(33, 33, 33, 0.95);
-    backdrop-filter: blur(10px);
-    z-index: 1000;
-}
+        /* 导航栏 */
+        .revolution-nav {
+            background: linear-gradient(
+                90deg,
+                var(--soviet-red) 0%,
+                rgba(0,57,166,0.8) 100%
+            );
+            padding: 1rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            position: relative;
+        }
 
-.nav-menu {
-    display: flex;
-    justify-content: center;
-    padding: 1rem;
-    gap: 2rem;
-}
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-.nav-link {
-    color: var(--secondary);
-    text-decoration: none;
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
-    transition: all 0.3s ease;
-    position: relative;
-}
+        .hammer-sickle {
+            font-size: 2.5rem;
+            animation: emblem-pulse 2s ease-in-out infinite;
+        }
 
-.nav-link::after {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: var(--cyber);
-    transition: width 0.3s;
-}
+        /* 工业风格主内容 */
+        .industrial-main {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: rgba(0,0,0,0.7);
+            border: 3px solid var(--revolution-gold);
+            position: relative;
+        }
 
-.nav-link:hover::after {
-    width: 100%;
-}
+        /* 宣言卡片 */
+        .manifesto-card {
+            background: linear-gradient(
+                145deg,
+                rgba(196,30,58,0.3) 0%,
+                rgba(0,57,166,0.3) 100%
+            );
+            padding: 2rem;
+            margin: 2rem 0;
+            border-left: 5px solid var(--revolution-gold);
+            clip-path: polygon(0 0, 100% 0, 95% 100%, 0 100%);
+            transition: transform 0.3s ease;
+        }
 
-/* 响应式设计 */
-@media (max-width: 768px) {
-    .nav-menu {
-        flex-direction: column;
-        position: fixed;
-        right: -100%;
-        top: 60px;
-        background: var(--dark);
-        transition: right 0.3s;
-    }
+        /* 响应式网格系统 */
+        .revolution-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem 0;
+        }
 
-    .nav-toggle {
-        display: block;
-        color: var(--secondary);
-        font-size: 2rem;
-        padding: 1rem;
-        cursor: pointer;
-    }
-}
+        /* 动态工业边框 */
+        .industrial-border {
+            position: relative;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
 
-/* 赛博卡片 */
-.cyber-card {
-    background: linear-gradient(145deg, #262626, #1a1a1a);
-    border: 1px solid var(--primary);
-    border-radius: 8px;
-    padding: 2rem;
-    margin: 1rem;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-    transition: transform 0.3s ease;
-}
+        .industrial-border::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 2px solid var(--revolution-gold);
+            clip-path: polygon(
+                0 0, 100% 0, 100% 80%,
+                90% 100%, 0 100%
+            );
+            z-index: -1;
+        }
 
-.cyber-card:hover {
-    transform: translateY(-5px);
-}
+        /* 关键帧动画 */
+        @keyframes emblem-pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
 
-/* 渐变文字效果 */
-.gradient-text {
-    background: linear-gradient(45deg, var(--primary), var(--secondary));
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    font-size: 3.5rem;
-    text-align: center;
-}
+        @keyframes red-star {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
 
-/* 动态分割线 */
-.cyber-divider {
-    height: 2px;
-    background: linear-gradient(90deg, 
-        transparent 0%, 
-        var(--primary) 30%,
-        var(--cyber) 70%, 
-        transparent 100%
-    );
-    margin: 2rem auto;
-    width: 60%;
-}
+        /* 现代化改进 */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+            }
+            
+            .manifesto-card {
+                clip-path: none;
+            }
+        }
 
-/* 科技感悬浮效果 */
-.social-icon {
-    display: inline-block;
-    padding: 1rem;
-    margin: 0 1rem;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.1);
-    transition: all 0.3s ease;
-}
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
 
-.social-icon:hover {
-    background: var(--primary);
-    transform: rotate(45deg) scale(1.2);
-}
+        .social-icon {
+            width: 45px;
+            height: 45px;
+            background: var(--soviet-red);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
 
-/* 粒子背景 */
-.particles-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    background: radial-gradient(circle at 50% 50%, 
-        rgba(211,47,47,0.1) 0%, 
-        rgba(33,33,33,0.9) 100%
-    );
-}
-
-/* 现代布局系统 */
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 2rem;
-}
-
-.card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    padding: 2rem 0;
-}
+        .social-icon:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 15px rgba(196,30,58,0.5);
+        }
