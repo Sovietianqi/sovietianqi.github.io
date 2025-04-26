@@ -8,78 +8,55 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <header class="soviet-header">
-        <div class="header-grid">
-            <div class="logo">
-                <div class="emblem"></div>
-                <h1>Sovietianqi</h1>
-            </div>
-            <nav class="tech-nav">
-                <a href="#projects" class="nav-link"><i class="fas fa-code"></i> 项目</a>
-                <a href="#docs" class="nav-link"><i class="fas fa-book"></i> 文档</a>
-                <a href="https://github.com/sovietianqi" class="nav-link"><i class="fab fa-github"></i> 代码库</a>
-                <a href="#contact" class="nav-link"><i class="fas fa-network-wired"></i> 联系</a>
-            </nav>
+    <!-- 动态粒子背景 -->
+    <div class="particle-canvas"></div>
+    
+    <!-- 侧边栏 -->
+    <nav class="soviet-sidebar">
+        <div class="sidebar-emblem">
+            <div class="hammer-sickle"></div>
+            <span>技术委员会</span>
         </div>
-    </header>
+        <div class="sidebar-links">
+            <a href="#cr-docs" class="nav-item">
+                <i class="fas fa-file-code"></i>
+                <span>CR语言规范</span>
+            </a>
+            <a href="#ra2-mod" class="nav-item">
+                <i class="fas fa-cogs"></i>
+                <span>红警MOD开发</span>
+            </a>
+            <a href="https://github.com/sovietianqi" class="nav-item">
+                <i class="fab fa-github"></i>
+                <span>GitHub仓库</span>
+            </a>
+            <a href="#rsc-engine" class="nav-item">
+                <i class="fas fa-rocket"></i>
+                <span>RSC引擎</span>
+            </a>
+            <a href="#cloud" class="nav-item">
+                <i class="fas fa-database"></i>
+                <span>分布式云存储</span>
+            </a>
+        </div>
+    </nav>
 
+    <!-- 主内容区 -->
     <main class="soviet-main">
-        <section class="hero-section">
-            <div class="hero-grid">
-                <div class="hero-text">
-                    <h2>系统编程与分布式架构</h2>
-                    <p class="hero-subtitle">CR语言 · RSC引擎 · 私人云盘</p>
-                </div>
-                <div class="terminal-window">
-                    <div class="terminal-header">sovietianqi@server:~</div>
-                    <div class="terminal-body">
-                        <p>> crc build --release</p>
-                        <p>> Compiling collective runtime v3.2.1</p>
-                        <p>> Distributed consensus achieved</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+        <header class="revolution-header">
+            <h1 class="glowing-text">
+                <span class="cyrillic">СОВЕТИАНЦИ</span>
+                <span>SOVIETIANQI</span>
+            </h1>
+            <div class="pulsating-divider"></div>
+            <p class="revolution-subtitle">计算科学阵线</p>
+        </header>
 
-        <section class="project-grid">
-            <article class="project-card">
-                <div class="card-header">
-                    <i class="fas fa-cube"></i>
-                    <h3>CR 语言编译器</h3>
-                </div>
-                <ul class="tech-stack">
-                    <li>LLVM 后端</li>
-                    <li>并发运行时</li>
-                    <li>WASM 支持</li>
-                </ul>
-            </article>
-
-            <article class="project-card">
-                <div class="card-header">
-                    <i class="fas fa-server"></i>
-                    <h3>RSC 扩展引擎</h3>
-                </div>
-                <ul class="tech-stack">
-                    <li>Raft 共识算法</li>
-                    <li>向量时钟同步</li>
-                    <li>零拷贝传输</li>
-                </ul>
-            </article>
+        <section class="industrial-grid">
+            <!-- 技术卡片内容 -->
         </section>
     </main>
 
-    <footer class="soviet-footer">
-        <div class="footer-grid">
-            <div class="protocol-links">
-                <a href="CR_DOCS.html">CR语言规范</a>
-                <a href="RSC_SPEC.html">RSC协议</a>
-                <a href="http://sovietianqi.ysepan.com/">私人云盘</a>
-            </div>
-            <div class="license-info">
-                <p>遵循 Apache-2.0 协议</p>
-                <p>GPG 指纹: 1A2B3C4D5E6F7890</p>
-            </div>
-        </div>
-    </footer>
+    <script src="soviet-effects.js"></script>
 </body>
 </html>
