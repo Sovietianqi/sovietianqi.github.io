@@ -125,176 +125,7 @@
             padding: 40px;
             min-height: 100vh;
             position: relative;
-<!-- 在原有代码的main-content内添加以下section -->
-<div class="section" id="rsc-engine">
-    <h2 style="font-family: 'Orbitron'; border-left: 5px solid #FFD700;">
-        <i class="fas fa-rocket"></i> RT苏维埃燃烧引擎
-    </h2>
-    
-    <!-- 引擎标志 -->
-    <div class="rsc-logo" style="text-align:center;margin:20px 0;">
-        <div class="hammer-sickle" style="font-size:4em;color:#CC0000;text-shadow:0 0 15px #CC0000;">
-            ⚒️⚙️
-        </div>
-        <h3 style="color:#FFD700;">Version 3.14.15</h3>
-    </div>
-
-    <!-- 技术参数卡片 -->
-    <div class="cyber-card" style="background:rgba(44,44,44,0.9);padding:20px;border-radius:10px;margin:20px 0;">
-        <div class="card-header" style="border-bottom:2px solid #CC0000;padding-bottom:10px;">
-            <i class="fas fa-microchip"></i> 核心特性
-        </div>
-        <ul class="tech-list" style="columns:2;margin:15px 0;list-style:none;">
-            <li><i class="fas fa-bolt" style="color:#FFD700;"></i> 分布式实时计算</li>
-            <li><i class="fas fa-shield-alt" style="color:#FFD700;"></i> 军用级加密协议</li>
-            <li><i class="fas fa-network-wired" style="color:#FFD700;"></i> 去中心化节点网络</li>
-            <li><i class="fas fa-brain" style="color:#FFD700;"></i> 集体智能决策系统</li>
-        </ul>
-    </div>
-
-    <!-- GitHub仓库展示 -->
-    <div class="github-card" 
-         style="background: linear-gradient(45deg, #2C2C2C, #330000); 
-                padding: 20px;
-                border: 2px solid #CC0000;
-                border-radius: 10px;
-                margin: 20px 0;
-                position: relative;">
-        <div class="repo-header" style="display:flex;align-items:center;">
-            <i class="fab fa-github" style="font-size:2em;margin-right:15px;"></i>
-            <div>
-                <h3 style="margin:0;">
-                    <a href="https://github.com/Sovietianqi/RT-Soviet-Combustion" 
-                       target="_blank" 
-                       style="color:#FFD700;text-decoration:none;">
-                        RT苏维埃燃烧引擎
-                    </a>
-                </h3>
-                <p style="margin:5px 0;color:#aaa;">Stars: <span id="github-stars">加载中...</span></p>
-            </div>
-        </div>
-        
-        <div class="repo-stats" style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:15px;">
-            <div class="stat-item" style="text-align:center;padding:10px;background:rgba(204,0,0,0.2);">
-                <div class="stat-label" style="color:#FFD700;">提交次数</div>
-                <div class="stat-value" id="github-commits">-</div>
-            </div>
-            <div class="stat-item" style="text-align:center;padding:10px;background:rgba(204,0,0,0.2);">
-                <div class="stat-label" style="color:#FFD700;">贡献者</div>
-                <div class="stat-value" id="github-contributors">-</div>
-            </div>
-            <div class="stat-item" style="text-align:center;padding:10px;background:rgba(204,0,0,0.2);">
-                <div class="stat-label" style="color:#FFD700;">协议类型</div>
-                <div class="stat-value">GPL-3.0</div>
-            </div>
-        </div>
-
-        <!-- 文档链接 -->
-        <div class="doc-buttons" style="margin-top:20px;display:flex;gap:10px;">
-            <a href="https://github.com/Sovietianqi/RT-Soviet-Combustion/wiki" 
-               class="doc-button" 
-               style="flex:1;
-                      padding:10px;
-                      background:linear-gradient(45deg,#CC0000,#660000);
-                      text-align:center;
-                      color:white;
-                      text-decoration:none;
-                      border-radius:5px;
-                      transition:0.3s;">
-                <i class="fas fa-book"></i> 技术白皮书
-            </a>
-            <a href="https://github.com/Sovietianqi/RT-Soviet-Combustion/releases" 
-               class="doc-button" 
-               style="flex:1;
-                      padding:10px;
-                      background:linear-gradient(45deg,#CC0000,#660000);
-                      text-align:center;
-                      color:white;
-                      text-decoration:none;
-                      border-radius:5px;
-                      transition:0.3s;">
-                <i class="fas fa-download"></i> 最新版本
-            </a>
-        </div>
-    </div>
-
-    <!-- 技术说明 -->
-    <div class="tech-description" style="margin-top:30px;">
-        <h3 style="color:#FFD700;border-left:3px solid #CC0000;padding-left:10px;">
-            <i class="fas fa-cogs"></i> 架构设计理念
-        </h3>
-        <p style="line-height:1.6;margin:15px 0;">
-            RSC引擎采用革命性的"集体计算"架构，通过分布式节点网络实现：
-            <ul style="columns:2;list-style:none;margin:15px 0;">
-                <li><i class="fas fa-check" style="color:#CC0000;"></i> 冗余加密数据分片</li>
-                <li><i class="fas fa-check" style="color:#CC0000;"></i> 动态负载均衡算法</li>
-                <li><i class="fas fa-check" style="color:#CC0000;"></i> 量子抗性签名机制</li>
-                <li><i class="fas fa-check" style="color:#CC0000;"></i> 自主修复式节点网络</li>
-            </ul>
-        </p>
-        
-        <!-- 架构示意图 -->
-        <div class="architecture-diagram" 
-             style="height:300px;
-                    background:rgba(204,0,0,0.1);
-                    border:2px dashed #CC0000;
-                    margin:20px 0;
-                    position:relative;">
-            <div class="node" 
-                 style="position:absolute;
-                        width:60px;
-                        height:60px;
-                        background:radial-gradient(#CC0000,#660000);
-                        border-radius:50%;
-                        animation:pulse 2s infinite;">
-            </div>
-            <!-- 可添加更多节点元素 -->
-        </div>
-    </div>
-</div>
-
-<script>
-// GitHub API 数据获取
-async function fetchGitHubStats() {
-    try {
-        const response = await fetch('https://api.github.com/repos/Sovietianqi/RT-Soviet-Combustion');
-        const data = await response.json();
-        
-        document.getElementById('github-stars').textContent = data.stargazers_count;
-        document.getElementById('github-commits').textContent = 
-            new Intl.NumberFormat().format(data.size);
-        document.getElementById('github-contributors').textContent = 
-            data.contributors_url ? '获取中...' : '集体贡献';
-            
-        // 获取贡献者数量
-        const contributorsResponse = await fetch(data.contributors_url);
-        const contributorsData = await contributorsResponse.json();
-        document.getElementById('github-contributors').textContent = contributorsData.length;
-        
-    } catch (error) {
-        console.error('GitHub数据获取失败:', error);
-        document.getElementById('github-stars').textContent = '∞';
-    }
-}
-
-// 页面加载完成后执行
-window.addEventListener('load', () => {
-    fetchGitHubStats();
-    
-    // 节点动画
-    const diagram = document.querySelector('.architecture-diagram');
-    for(let i=0; i<5; i++) {
-        const node = document.createElement('div');
-        node.className = 'node';
-        node.style.left = `${Math.random()*90}%`;
-        node.style.top = `${Math.random()*90}%`;
-        node.style.animationDelay = `${Math.random()*2}s`;
-        diagram.appendChild(node);
-    }
-});
-</script>
-        }
-
+｝
         /* 内容区块 */
         .section {
             background: linear-gradient(145deg, rgba(44,44,44,0.95) 0%, rgba(68,0,0,0.8) 100%);
@@ -458,13 +289,111 @@ window.addEventListener('load', () => {
             </div>
         </div>
 
-        <div class="section" id="rsc-engine">
-            <h2><i class="fas fa-server"></i> RSC扩展引擎</h2>
-            <p>分布式计算的苏维埃式实现方案</p>
-            <div class="progress-bar" style="height: 5px; background: rgba(255,255,255,0.2); margin-top: 15px;">
-                <div style="width: 75%; height: 100%; background: var(--red); transition: 1s;"></div>
+        <!-- 在原有代码的main-content内添加以下section -->
+<div class="section" id="rsc-engine">
+    <h2 style="font-family: 'Orbitron'; border-left: 5px solid #FFD700;">
+        <i class="fas fa-rocket"></i> RT苏维埃燃烧引擎
+    </h2>
+    
+    <!-- 引擎标志 -->
+    <div class="rsc-logo" style="text-align:center;margin:20px 0;">
+        <div class="hammer-sickle" style="font-size:4em;color:#CC0000;text-shadow:0 0 15px #CC0000;">
+            ⚒️⚙️
+        </div>
+        <h3 style="color:#FFD700;">Version 3.14.15</h3>
+    </div>
+
+    <!-- 技术参数卡片 -->
+    <div class="cyber-card" style="background:rgba(44,44,44,0.9);padding:20px;border-radius:10px;margin:20px 0;">
+        <div class="card-header" style="border-bottom:2px solid #CC0000;padding-bottom:10px;">
+            <i class="fas fa-microchip"></i> 核心特性
+        </div>
+        <ul class="tech-list" style="columns:2;margin:15px 0;list-style:none;">
+            <li><i class="fas fa-bolt" style="color:#FFD700;"></i> 分布式实时计算</li>
+            <li><i class="fas fa-shield-alt" style="color:#FFD700;"></i> 军用级加密协议</li>
+            <li><i class="fas fa-network-wired" style="color:#FFD700;"></i> 去中心化节点网络</li>
+            <li><i class="fas fa-brain" style="color:#FFD700;"></i> 集体智能决策系统</li>
+        </ul>
+    </div>
+
+    <!-- GitHub仓库展示 -->
+    <div class="github-card" 
+         style="background: linear-gradient(45deg, #2C2C2C, #330000); 
+                padding: 20px;
+                border: 2px solid #CC0000;
+                border-radius: 10px;
+                margin: 20px 0;
+                position: relative;">
+        <div class="repo-header" style="display:flex;align-items:center;">
+            <i class="fab fa-github" style="font-size:2em;margin-right:15px;"></i>
+            <div>
+                <h3 style="margin:0;">
+                    <a href="https://github.com/Sovietianqi/RT-Soviet-Combustion" 
+                       target="_blank" 
+                       style="color:#FFD700;text-decoration:none;">
+                        RT苏维埃燃烧引擎
+                    </a>
+                </h3>
+                <p style="margin:5px 0;color:#aaa;">Stars: <span id="github-stars">加载中...</span></p>
             </div>
         </div>
+        
+        <div class="repo-stats" style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:15px;">
+            <div class="stat-item" style="text-align:center;padding:10px;background:rgba(204,0,0,0.2);">
+                <div class="stat-label" style="color:#FFD700;">提交次数</div>
+                <div class="stat-value" id="github-commits">-</div>
+            </div>
+            <div class="stat-item" style="text-align:center;padding:10px;background:rgba(204,0,0,0.2);">
+                <div class="stat-label" style="color:#FFD700;">贡献者</div>
+                <div class="stat-value" id="github-contributors">-</div>
+            </div>
+            <div class="stat-item" style="text-align:center;padding:10px;background:rgba(204,0,0,0.2);">
+                <div class="stat-label" style="color:#FFD700;">协议类型</div>
+                <div class="stat-value">GPL-3.0</div>
+            </div>
+        </div>
+
+        <!-- 文档链接 -->
+        <div class="doc-buttons" style="margin-top:20px;display:flex;gap:10px;">
+            <a href="https://github.com/Sovietianqi/RT-Soviet-Combustion/wiki" 
+               class="doc-button" 
+               style="flex:1;
+                      padding:10px;
+                      background:linear-gradient(45deg,#CC0000,#660000);
+                      text-align:center;
+                      color:white;
+                      text-decoration:none;
+                      border-radius:5px;
+                      transition:0.3s;">
+                <i class="fas fa-book"></i> 技术白皮书
+            </a>
+            <a href="https://github.com/Sovietianqi/RT-Soviet-Combustion/releases" 
+               class="doc-button" 
+               style="flex:1;
+                      padding:10px;
+                      background:linear-gradient(45deg,#CC0000,#660000);
+                      text-align:center;
+                      color:white;
+                      text-decoration:none;
+                      border-radius:5px;
+                      transition:0.3s;">
+                <i class="fas fa-download"></i> 最新版本
+            </a>
+        </div>
+    </div>
+
+    <!-- 技术说明 -->
+    <div class="tech-description" style="margin-top:30px;">
+        <h3 style="color:#FFD700;border-left:3px solid #CC0000;padding-left:10px;">
+            <i class="fas fa-cogs"></i> 架构设计理念
+        </h3>
+        <p style="line-height:1.6;margin:15px 0;">
+            RSC引擎采用革命性的"集体计算"架构，通过分布式节点网络实现：
+            <ul style="columns:2;list-style:none;margin:15px 0;">
+                <li><i class="fas fa-check" style="color:#CC0000;"></i> 冗余加密数据分片</li>
+                <li><i class="fas fa-check" style="color:#CC0000;"></i> 动态负载均衡算法</li>
+                <li><i class="fas fa-check" style="color:#CC0000;"></i> 量子抗性签名机制</li>
+                <li><i class="fas fa-check" style="color:#CC0000;"></i> 自主修复
 
         <i class="fas fa-star soviet-star"></i>
     </main>
