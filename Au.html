@@ -148,4 +148,37 @@
             switch(e.key.toLowerCase()) {
                 case 'w': case 'arrowup':
                     player.style.top = Math.max(0, rect.top - playerSpeed) + 'px';
-                  
+                    break;
+                case 's': case 'arrowdown':
+                    player.style.top = Math.min(570, rect.top + playerSpeed) + 'px';
+                    break;
+                case 'a': case 'arrowleft':
+                    player.style.left = Math.max(0, rect.left - playerSpeed) + 'px';
+                    break;
+                case 'd': case 'arrowright':
+                    player.style.left = Math.min(770, rect.left + playerSpeed) + 'px';
+                    break;
+            }
+        });
+
+        // 人机AI
+        setInterval(() => {
+            const botRect = bot.getBoundingClientRect();
+            const playerRect = player.getBoundingClientRect();
+            
+            const dx = playerRect.left - botRect.left;
+            const dy = playerRect.top - botRect.top;
+            const distance = Math.sqrt(dx*dx + dy*dy);
+            
+            if(distance > 100) {
+                bot.style.left = botRect.left + (Math.random()-0.5)*20 + 'px';
+                bot.style.top = botRect.top + (Math.random()-0.5)*20 + 'px';
+            }
+        }, 1000);
+
+        // 游戏循环
+        setInterval(spawnGold, 2000);
+        setInterval(spawnFlower, 5000);
+    </script>
+</body>
+</html>
