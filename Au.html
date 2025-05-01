@@ -13,73 +13,82 @@
         }
 
         body {
-            background: #f0f8ff;
+            background: #2c3e50;
             overflow: hidden;
-            display: flex;
-            flex-direction: column;
             height: 100vh;
+            font-family: 'Arial Rounded MT Bold', Arial;
         }
 
         #status {
-            padding: 10px;
-            font-family: Arial;
+            padding: 12px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            text-align: center;
             font-size: 14px;
-            background: rgba(255, 255, 255, 0.9);
-            display: flex;
-            justify-content: space-around;
+            position: relative;
+            z-index: 2;
         }
 
         #gameArea {
-            flex: 1;
+            width: 100%;
+            height: 100%;
             position: relative;
-            background: #e0f0ff;
-            touch-action: none;
+            overflow: hidden;
+        }
+
+        .entity {
+            position: absolute;
+            background-size: contain;
+            image-rendering: crisp-edges;
+            transition: all 0.2s ease-out;
         }
 
         .player {
-            position: absolute;
-            transition: transform 0.1s;
-            image-rendering: pixelated;
-        }
-
-        .silver { background: #c0c0c0; }
-        .golden { background: #ffd700; }
-        .platinum { background: #e5e4e2; }
-
-        .gold {
-            width: 5vw;
-            height: 5vw;
-            background: gold;
-            position: absolute;
-            border-radius: 50%;
-            animation: pulse 1s infinite;
+            width: 15vw;
+            height: 15vw;
+            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAMAAACdt4HsAAAAM1BMVEVHcEwRQIARQYERQIERQYERQIERQIERQIERQIERQIERQIERQYERQIERQIERQIERQIERQIHpPxWAAAAEHRSTlMAESIzRFVmd4iZqrvM3e7/dpUBFQAAAStJREFUWMPtlsENwjAMRQMU6G73XzqOgA2YIE2iPKm6VJbl2LE/9Q/DMAzDMAzDMAzDMAzDMAzDMAzDMAzDMAzD+GVaB9Raa6211v5qWwcc5xERr5vjvI6IuE0dUJ7XiHhcIuJ+iYjHNSIeUwc8zxHxuETE7RwRt3NEPKcOKM9TRNxPEXE7RcTtFBH3qQPK4xARt0NE3A4RcTtExH3qgHI/RMR1HxHXfURc9xFx20fEfeqAct1FxHkXEeddRJx3EXHeRcR16oBy2UbEcRsRx21EHLcRcdxGxGnqgHLaRMRhExGHTUQcNhFx2ETEceqActhExH4TEftNROw3EbHfRMR+6oCy30bEfhsR+21E7LcRsd9GxG7qgLLbRMR2ExHbTURsNxGx3UTEdvqAfwDl+uZJ4U4n5QAAAABJRU5ErkJggg==');
         }
 
         .bot {
-            width: 6vw;
-            height: 6vw;
-            background: #666;
-            position: absolute;
-            border-radius: 50%;
-            transition: all 0.3s;
+            width: 12vw;
+            height: 12vw;
+            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAMAAACdt4HsAAAAM1BMVEVHcEz///8RQIERQIERQIERQIERQIERQIERQIERQIERQIERQIERQIERQIERQIERQIERQIGp0S2ZAAAAEHRSTlMAESIzRFVmd4iZqrvM3e7/dpUBFQAAAS5JREFUWMPt1kEOgjAQhWFaQBbG+68dF+ACXEBj4gtqF7RpZ5Iu+JKTkJDw/3T6MAzDMAzDMAzDMAzDMAzDMAzDMAzDMAzDMP5pYwfUWhdCCOHXtjXAcR4R8bo5zuuIiNvUAeV5jYjHJSLul4i4XyLicZ06oDyvEfG4RMT9EhH3S0Q8pg4oz2tEPC4Rcb9ExP0SEY+pA8rzFBH3Q0TcDxFxP0TE/RAR96kDyuMQEbdDRNwOEXE7RMTtEBG3qQPKdRcR511EnHcRcd5FxHkXEeepA8ppExGHTUQcNhFx2ETEYRMRx6kDynETEftNROw3EbHfRMR+ExH7qQPKfhsR+21E7LcRsd9GxH4bEfupA8p+GxH7bUTstxGx30bEfhsR++kD/gDlE+d4Z3w3iwAAAABJRU5ErkJggg==');
+            animation: botPulse 2s infinite;
+        }
+
+        .gold {
+            width: 8vw;
+            height: 8vw;
+            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAMAAACdt4HsAAAAM1BMVEVHcEw4tP84tP84tP84tP84tP84tP84tP84tP84tP84tP84tP84tP84tP84tP84tP84tP9hB8yZAAAAEHRSTlMAESIzRFVmd4iZqrvM3e7/dpUBFQAAAStJREFUWMPt1kEOgjAQhWFKW1Y97r92XIAbcAEaE19Qu6BNO5N0wZechISE/6fTh2EYhmEYhmEYhmEYhmEYhmEYhmEYhmEYhvFPGzug1rpM0zRNv7atAY7ziIjXzXFeR0Tcpg4oz2tEPC4Rcb9ExP0SEY+pA8rzGhGPS0TcLxFxv0TEY+qA8rxGxOMSEfdLRNwvEfGYOqA8TxFxP0TE/RAR90NE3A8RcZ86oDwOEXE7RMTtEBG3Q0TcDhFxmzqgXHcRcd5FxHkXEeddRJx3EXGeOqCcNhFx2ETEYRMRh01EHDYRcZw6oBw2EbHfRMR+ExH7TUTsNxGxnzqg7LcRsd9GxH4bEfttROy3EbGfOqDstxGx30bEfhsR+21E7LcRsZ8+4A+6D+d4CgQZvQAAAABJRU5ErkJggg==');
+            animation: spin 4s linear infinite;
         }
 
         .flower {
-            width: 6vw;
-            height: 6vw;
-            position: absolute;
-            background-size: contain;
+            width: 10vw;
+            height: 10vw;
+            animation: float 3s ease-in-out infinite;
         }
 
-        .thick { background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="45" fill="%23ff1493"/></svg>'); }
-        .thin { background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="30" fill="%23ff69b4"/></svg>'); }
+        .thick { background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAMAAACdt4HsAAAAOVBMVEVHcEzOxP/OxP/OxP/OxP/OxP/OxP/OxP/OxP/OxP/OxP/OxP/OxP/OxP/OxP/OxP/OxP/OxP/OxP+6GHmJAAAAD3RSTlMAIkRVZneImbq7zN3u//9VAcUAAAC3SURBVFjD7dVZDsMgDAVQA8aQhe5/7dAFj0BCDGn1f1KjqL6ADTbDMAzDMAzDMAzDMAzDMAzDMAzDMAzDMAzD+J8x9wW01lprrf3VpgVwXkdEvG6O8zoi4jZ1QHleI+JxiYj7JSLul4h4TB1QnteIeFwi4n6JiPslIh5TB5TnNSIel4i4XyLifomIx9QB5XmKiPshIu6HiLgfIuJ+iIj71AHlcYiI2yEiboeIuB0i4naIiNvUAeW6i4jzLiLOu4g47yLivIuI89QB5bSJiMMmIg6biDhsIuKwiYjj1AHluImI/SYi9puI2G8iYr+JiP3UAWW/jYj9NiL224jYbyNiv42I/fQBZb+NiP02IvbbiNhvI2K/jYj99AF/AE9e5zV7BqjAAAAAAElFTkSuQmCC'); }
+        .thin { background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAMAAACdt4HsAAAANlBMVEVHcEzr6+vOxP/OxP/OxP/OxP/OxP/OxP/OxP/OxP/OxP/OxP/OxP/OxP/OxP/OxP/OxP/OxP/OxP9x6sKCAAAAD3RSTlMAIkRVZneImbq7zN3u//9VAcUAAAC3SURBVFjD7dVZDsMgDAVQA8aQhe5/7dAFj0BCDGn1f1KjqL6ADTbDMAzDMAzDMAzDMAzDMAzDMAzDMAzDMAzD+J8x9wW01lprrf3VpgVwXkdEvG6O8zoi4jZ1QHleI+JxiYj7JSLul4h4TB1QnteIeFwi4n6JiPslIh5TB5TnNSIel4i4XyLifomIx9QB5XmKiPshIu6HiLgfIuJ+iIj71AHlcYiI2yEiboeIuB0i4naIiNvUAeW6i4jzLiLOu4g47yLivIuI89QB5bSJiMMmIg6biDhsIuKwiYjj1AHluImI/SYi9puI2G8iYr+JiP3UAWW/jYj9NiL224jYbyNiv42I/fQBZb+NiP02IvbbiNhvI2K/jYj99AF/AE9e5zV7BqjAAAAAAElFTkSuQmCC'); }
 
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.2); }
-            100% { transform: scale(1); }
+        @keyframes spin {
+            100% { transform: rotate(360deg); }
         }
 
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes botPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        
         #orientationWarning {
             display: none;
             position: fixed;
@@ -104,152 +113,235 @@
 </head>
 <body>
     <div id="status">
-        <div>💰<span id="goldCount">0</span></div>
-        <div>⚔️<span id="level">银强</span></div>
-        <div>🌺<span id="flowerThick">0</span></div>
-        <div>🌸<span id="flowerThin">0</span></div>
+        <div>💰 <span id="goldCount">0</span></div>
+        <div>⚔️ <span id="level">银强</span></div>
+        <div>🌺 <span id="flowerThick">0</span></div>
+        <div>🌸 <span id="flowerThin">0</span></div>
     </div>
     <div id="gameArea"></div>
     <div id="orientationWarning">请横屏游戏以获得最佳体验</div>
 
     <script>
-        const player = document.createElement('div');
-        player.className = 'player silver';
-        const gameArea = document.getElementById('gameArea');
-        
-        // 初始化游戏参数
-        let goldCount = 0, flowerThick = 0, flowerThin = 0;
-        let playerSpeed = 8, level = 1;
-        let touchStartX = 0, touchStartY = 0;
-        let isTouching = false;
-
-        // 初始化玩家位置
-        function initPlayer() {
-            player.style.width = player.style.height = '8vw';
-            player.style.left = '45%';
-            player.style.top = '45%';
-            gameArea.appendChild(player);
-        }
-
-        // 触控事件处理
-        gameArea.addEventListener('touchstart', (e) => {
-            isTouching = true;
-            touchStartX = e.touches[0].clientX;
-            touchStartY = e.touches[0].clientY;
-        });
-
-        gameArea.addEventListener('touchmove', (e) => {
-            if (!isTouching) return;
-            e.preventDefault();
-            
-            const deltaX = e.touches[0].clientX - touchStartX;
-            const deltaY = e.touches[0].clientY - touchStartY;
-            
-            const rect = gameArea.getBoundingClientRect();
-            let newX = parseFloat(player.style.left) + (deltaX / rect.width * 100);
-            let newY = parseFloat(player.style.top) + (deltaY / rect.height * 100);
-            
-            player.style.left = Math.max(0, Math.min(92, newX)) + '%';
-            player.style.top = Math.max(0, Math.min(92, newY)) + '%';
-            
-            touchStartX = e.touches[0].clientX;
-            touchStartY = e.touches[0].clientY;
-        });
-
-        gameArea.addEventListener('touchend', () => isTouching = false);
-
-        // 生成游戏元素
-        function spawnElement(className, clickHandler) {
-            const elem = document.createElement('div');
-            elem.className = className;
-            elem.style.left = Math.random() * 92 + '%';
-            elem.style.top = Math.random() * 92 + '%';
-            elem.addEventListener('click', clickHandler);
-            gameArea.appendChild(elem);
-            setTimeout(() => elem.remove(), 5000);
-        }
-
-        // 收集金子
-        function collectGold(e) {
-            goldCount += e.target.classList.contains('big') ? 3 : 1;
-            document.getElementById('goldCount').textContent = goldCount;
-            e.target.remove();
-            
-            if (goldCount >= 30 && level < 3) {
-                level = 3;
-                player.className = 'player platinum';
-                player.style.width = player.style.height = '12vw';
-            } else if (goldCount >= 10 && level < 2) {
-                level = 2;
-                player.className = 'player golden';
-                player.style.width = player.style.height = '10vw';
+        class Game {
+            constructor() {
+                this.gameArea = document.getElementById('gameArea');
+                this.bots = new Set();
+                this.init();
             }
-            document.getElementById('level').textContent = ['银强', '金强', '铂金'][level-1];
-            
-            // 震动反馈
-            navigator.vibrate?.(50);
-        }
 
-        // 收集花朵
-        function collectFlower(e) {
-            if (e.target.classList.contains('thick')) {
-                flowerThick++;
-                playerSpeed += 3;
-                setTimeout(() => playerSpeed -= 3, 5000);
-            } else {
-                flowerThin++;
-                document.querySelectorAll('.bot').forEach(bot => {
-                    bot.style.transform = 'scale(0.7)';
-                    setTimeout(() => bot.style.transform = '', 5000);
+            init() {
+                this.createPlayer();
+                this.setupControls();
+                this.gameLoop();
+                this.botSpawner();
+                this.itemSpawner();
+            }
+
+            createPlayer() {
+                this.player = this.createEntity('player', 15);
+                this.playerStats = {
+                    gold: 0,
+                    level: 1,
+                    speed: 8,
+                    flowers: { thick: 0, thin: 0 }
+                };
+                this.updateStatus();
+            }
+
+            createEntity(className, sizePercent) {
+                const entity = document.createElement('div');
+                entity.className = `entity ${className}`;
+                entity.style.width = entity.style.height = `${sizePercent}vw`;
+                entity.style.left = `${50 - sizePercent/2}%`;
+                entity.style.top = `${50 - sizePercent/2}%`;
+                this.gameArea.appendChild(entity);
+                return entity;
+            }
+
+            setupControls() {
+                let touchStartX = 0, touchStartY = 0;
+                
+                this.gameArea.addEventListener('touchstart', e => {
+                    touchStartX = e.touches[0].clientX;
+                    touchStartY = e.touches[0].clientY;
+                });
+
+                this.gameArea.addEventListener('touchmove', e => {
+                    e.preventDefault();
+                    const dx = e.touches[0].clientX - touchStartX;
+                    const dy = e.touches[0].clientY - touchStartY;
+                    
+                    const rect = this.gameArea.getBoundingClientRect();
+                    const speedFactor = this.playerStats.speed / 100;
+                    
+                    const newX = parseFloat(this.player.style.left) + (dx / rect.width * 100 * speedFactor);
+                    const newY = parseFloat(this.player.style.top) + (dy / rect.height * 100 * speedFactor);
+                    
+                    this.player.style.left = `${Math.max(0, Math.min(85, newX))}%`;
+                    this.player.style.top = `${Math.max(0, Math.min(85, newY))}%`;
+                    
+                    touchStartX = e.touches[0].clientX;
+                    touchStartY = e.touches[0].clientY;
                 });
             }
-            document.getElementById('flowerThick').textContent = flowerThick;
-            document.getElementById('flowerThin').textContent = flowerThin;
-            e.target.remove();
-        }
 
-        // 人机AI
-        function botAI() {
-            document.querySelectorAll('.bot').forEach(bot => {
-                const dx = Math.random() * 40 - 20;
-                const dy = Math.random() * 40 - 20;
-                const newX = Math.max(0, Math.min(92, parseFloat(bot.style.left) + dx));
-                const newY = Math.max(0, Math.min(92, parseFloat(bot.style.top) + dy));
-                bot.style.left = newX + '%';
-                bot.style.top = newY + '%';
-            });
-        }
+            gameLoop() {
+                setInterval(() => {
+                    this.bots.forEach(bot => {
+                        const playerPos = this.getPosition(this.player);
+                        const botPos = this.getPosition(bot);
+                        
+                        // 高级AI行为
+                        const distance = Math.hypot(
+                            playerPos.x - botPos.x,
+                            playerPos.y - botPos.y
+                        );
+                        
+                        if (distance < 30) { // 追逐玩家
+                            const angle = Math.atan2(
+                                playerPos.y - botPos.y,
+                                playerPos.x - botPos.x
+                            );
+                            
+                            const speed = distance < 15 ? 0.3 : 0.15;
+                            bot.style.left = `${botPos.x + Math.cos(angle) * speed}%`;
+                            bot.style.top = `${botPos.y + Math.sin(angle) * speed}%`;
+                        } else { // 随机巡逻
+                            bot.style.left = `${botPos.x + (Math.random() - 0.5)}%`;
+                            bot.style.top = `${botPos.y + (Math.random() - 0.5)}%`;
+                        }
+                        
+                        // 边界限制
+                        bot.style.left = `${Math.max(5, Math.min(85, parseFloat(bot.style.left))}%`;
+                        bot.style.top = `${Math.max(5, Math.min(85, parseFloat(bot.style.top))}%`;
+                    });
+                    
+                    this.checkCollisions();
+                }, 1000/60);
+            }
 
-        // 游戏初始化
-        function initGame() {
-            initPlayer();
-            
-            // 生成初始元素
-            setInterval(() => {
-                spawnElement('gold' + (Math.random() > 0.8 ? ' big' : ''), collectGold);
-            }, 2000);
+            getPosition(element) {
+                return {
+                    x: parseFloat(element.style.left),
+                    y: parseFloat(element.style.top)
+                };
+            }
 
-            setInterval(() => {
-                spawnElement('flower ' + (Math.random() > 0.5 ? 'thick' : 'thin'), collectFlower);
-            }, 5000);
+            checkCollisions() {
+                const playerPos = this.getPosition(this.player);
+                
+                // 检测金子碰撞
+                document.querySelectorAll('.gold').forEach(gold => {
+                    const goldPos = this.getPosition(gold);
+                    if (this.distance(playerPos, goldPos) < 12) {
+                        this.collectGold(gold);
+                    }
+                });
+                
+                // 检测道具碰撞
+                document.querySelectorAll('.flower').forEach(flower => {
+                    const flowerPos = this.getPosition(flower);
+                    if (this.distance(playerPos, flowerPos) < 15) {
+                        this.collectFlower(flower);
+                    }
+                });
+                
+                // 检测人机碰撞
+                this.bots.forEach(bot => {
+                    const botPos = this.getPosition(bot);
+                    if (this.distance(playerPos, botPos) < 13) {
+                        this.handleBotCollision(bot);
+                    }
+                });
+            }
 
-            // 添加人机
-            setInterval(() => {
-                if(document.querySelectorAll('.bot').length < 3) {
-                    const bot = document.createElement('div');
-                    bot.className = 'bot';
-                    bot.style.left = Math.random() * 92 + '%';
-                    bot.style.top = Math.random() * 92 + '%';
-                    gameArea.appendChild(bot);
+            distance(pos1, pos2) {
+                return Math.hypot(pos1.x - pos2.x, pos1.y - pos2.y);
+            }
+
+            collectGold(gold) {
+                this.playerStats.gold += gold.classList.contains('big') ? 3 : 1;
+                gold.remove();
+                
+                if (this.playerStats.gold >= 30 && this.playerStats.level < 3) {
+                    this.playerStats.level = 3;
+                    this.player.className = 'entity player platinum';
+                    this.player.style.width = this.player.style.height = '18vw';
+                } else if (this.playerStats.gold >= 10 && this.playerStats.level < 2) {
+                    this.playerStats.level = 2;
+                    this.player.className = 'entity player golden';
+                    this.player.style.width = this.player.style.height = '15vw';
                 }
-            }, 8000);
+                
+                this.updateStatus();
+                navigator.vibrate?.(50);
+            }
 
-            // 游戏循环
-            setInterval(botAI, 1000);
+            collectFlower(flower) {
+                const type = flower.classList.contains('thick') ? 'thick' : 'thin';
+                this.playerStats.flowers[type]++;
+                
+                if (type === 'thick') {
+                    this.playerStats.speed += 3;
+                    setTimeout(() => this.playerStats.speed -= 3, 5000);
+                } else {
+                    this.bots.forEach(bot => {
+                        bot.style.transform = 'scale(0.7)';
+                        setTimeout(() => bot.style.transform = '', 5000);
+                    });
+                }
+                
+                flower.remove();
+                this.updateStatus();
+            }
+
+            handleBotCollision(bot) {
+                this.playerStats.gold = Math.max(0, this.playerStats.gold - 1);
+                this.updateStatus();
+                bot.style.transform = 'scale(1.2)';
+                setTimeout(() => bot.style.transform = '', 200);
+                navigator.vibrate?.(200);
+            }
+
+            botSpawner() {
+                setInterval(() => {
+                    if (this.bots.size < 3 + Math.floor(this.playerStats.gold / 10)) {
+                        const bot = this.createEntity('bot', 12);
+                        bot.style.left = `${Math.random() * 80 + 5}%`;
+                        bot.style.top = `${Math.random() * 80 + 5}%`;
+                        this.bots.add(bot);
+                    }
+                }, 8000);
+            }
+
+            itemSpawner() {
+                setInterval(() => {
+                    const gold = this.createEntity('gold', 8);
+                    gold.style.left = `${Math.random() * 80 + 5}%`;
+                    gold.style.top = `${Math.random() * 80 + 5}%`;
+                    if (Math.random() > 0.85) gold.classList.add('big');
+                    setTimeout(() => gold.remove(), 5000);
+                }, 2000);
+
+                setInterval(() => {
+                    const flower = this.createEntity(`flower ${Math.random() > 0.5 ? 'thick' : 'thin'}`, 10);
+                    flower.style.left = `${Math.random() * 80 + 5}%`;
+                    flower.style.top = `${Math.random() * 80 + 5}%`;
+                    setTimeout(() => flower.remove(), 8000);
+                }, 5000);
+            }
+
+            updateStatus() {
+                document.getElementById('goldCount').textContent = this.playerStats.gold;
+                document.getElementById('level').textContent = 
+                    ['银强', '金强', '铂金'][this.playerStats.level - 1];
+                document.getElementById('flowerThick').textContent = this.playerStats.flowers.thick;
+                document.getElementById('flowerThin').textContent = this.playerStats.flowers.thin;
+            }
         }
 
         // 启动游戏
-        initGame();
+        new Game();
     </script>
 </body>
 </html>
