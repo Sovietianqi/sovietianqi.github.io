@@ -13,7 +13,7 @@
         }
 
         body {
-            background: #2c3e50;
+            background: #1a1a2e;
             overflow: hidden;
             height: 100vh;
             font-family: 'Arial Rounded MT Bold', Arial;
@@ -21,7 +21,7 @@
 
         #status {
             padding: 12px;
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(0, 0, 0, 0.8);
             color: white;
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -29,6 +29,7 @@
             font-size: 14px;
             position: relative;
             z-index: 2;
+            backdrop-filter: blur(5px);
         }
 
         #gameArea {
@@ -42,13 +43,15 @@
             position: absolute;
             background-size: contain;
             image-rendering: crisp-edges;
-            transition: all 0.2s ease-out;
+            transition: all 0.15s ease-out;
+            pointer-events: none;
         }
 
         .player {
             width: 15vw;
             height: 15vw;
-            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAMAAACdt4HsAAAAM1BMVEVHcEwRQIARQYERQIERQYERQIERQIERQIERQIERQIERQIERQYERQIERQIERQIERQIERQIHpPxWAAAAEHRSTlMAESIzRFVmd4iZqrvM3e7/dpUBFQAAAStJREFUWMPtlsENwjAMRQMU6G73XzqOgA2YIE2iPKm6VJbl2LE/9Q/DMAzDMAzDMAzDMAzDMAzDMAzDMAzDMAzD+GVaB9Raa6211v5qWwcc5xERr5vjvI6IuE0dUJ7XiHhcIuJ+iYjHNSIeUwc8zxHxuETE7RwRt3NEPKcOKM9TRNxPEXE7RcTtFBH3qQPK4xARt0NE3A4RcTtExH3qgHI/RMR1HxHXfURc9xFx20fEfeqAct1FxHkXEeddRJx3EXHeRcR16oBy2UbEcRsRx21EHLcRcdxGxGnqgHLaRMRhExGHTUQcNhFx2ETEceqActhExH4TEftNROw3EbHfRMR+6oCy30bEfhsR+21E7LcRsd9GxG7qgLLbRMR2ExHbTURsNxGx3UTEdvqAfwDl+uZJ4U4n5QAAAABJRU5ErkJggg==');
+            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAMAAACdt4HsAAAAM1BMVEVHcEwRQIARQYERQIERQYERQIERQIERQIERQIERQIERQYERQIERQIERQIERQIERQIHpPxWAAAAEHRSTlMAESIzRFVmd4iZqrvM3e7/dpUBFQAAAStJREFUWMPtlsENwjAMRQMU6G73XzqOgA2YIE2iPKm6VJbl2LE/9Q/DMAzDMAzDMAzDMAzDMAzDMAzDMAzDMAzD+GVaB9Raa6211v5qWwcc5xERr5vjvI6IuE0dUJ7XiHhcIuJ+iYj7JSKeUwc8zxHxuETE7RwRt3NEPKcOKM9TRNxPEXE7RcTtFBH3qQPK4xARt0NE3A4RcTtExH3qgHI/RMR1HxHXfURc9xFx20fEfeqAct1FxHkXEeddRJx3EXHeRcR16oBy2UTEYRMRh01EHDYRcdhExHHqgHLYRMR+ExH7TUTsNxGx30TEfuqAst9GxH4bEfttROy3EbHfRsR+6oCy30bEfhsR+21E7LcRsd9GxG76gH8A5frmSeFOJ+UAAAAASUVORK5CYII=');
+            filter: drop-shadow(0 0 8px rgba(255,215,0,0.5));
         }
 
         .bot {
@@ -61,7 +64,7 @@
         .gold {
             width: 8vw;
             height: 8vw;
-            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAMAAACdt4HsAAAAM1BMVEVHcEw4tP84tP84tP84tP84tP84tP84tP84tP84tP84tP84tP84tP84tP84tP84tP84tP9hB8yZAAAAEHRSTlMAESIzRFVmd4iZqrvM3e7/dpUBFQAAAStJREFUWMPt1kEOgjAQhWFKW1Y97r92XIAbcAEaE19Qu6BNO5N0wZechISE/6fTh2EYhmEYhmEYhmEYhmEYhmEYhmEYhmEYhvFPGzug1rpM0zRNv7atAY7ziIjXzXFeR0Tcpg4oz2tEPC4Rcb9ExP0SEY+pA8rzGhGPS0TcLxFxv0TEY+qA8rxGxOMSEfdLRNwvEfGYOqA8TxFxP0TE/RAR90NE3A8RcZ86oDwOEXE7RMTtEBG3Q0TcDhFxmzqgXHcRcd5FxHkXEeddRJx3EXGeOqCcNhFx2ETEYRMRh01EHDYRcZw6oBw2EbHfRMR+ExH7TUTsNxGxnzqg7LcRsd9GxH4bEfttROy3EbGfOqDstxGx30bEfhsR+21E7LcRsZ8+4A+6D+d4CgQZvQAAAABJRU5ErkJggg==');
+            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAMAAACdt4HsAAAAM1BMVEVHcEw4tP84tP84tP84tP84tP84tP84tP84tP84tP84tP84tP84tP84tP84tP84tP9hB8yZAAAAEHRSTlMAESIzRFVmd4iZqrvM3e7/dpUBFQAAAStJREFUWMPt1kEOgjAQhWFKW1Y97r92XIAbcAEaE19Qu6BNO5N0wZechISE/6fTh2EYhmEYhmEYhmEYhmEYhmEYhmEYhmEYhvFPGzug1rpM0zRNv7atAY7ziIjXzXFeR0Tcpg4oz2tEPC4Rcb9ExP0SEY+pA8rzGhGPS0TcLxFxv0TEY+qA8rxGxOMSEfdLRNwvEfGYOqA8TxFxP0TE/RAR90NE3A8RcZ86oDwOEXE7RMTtEBG3Q0TcDhFxmzqgXHcRcd5FxHkXEeddRJx3EXGeOqCcNhFx2ETEYRMRh01EHDYRcZw6oBw2EbHfRMR+ExH7TUTsNxGxnzqg7LcRsd9GxH4bEfttROy3EbGfOqDstxGx30bEfhsR+21E7LcRsZ8+4A+6D+d4CgQZvQAAAABJRU5ErkJggg==');
             animation: spin 4s linear infinite;
         }
 
@@ -88,7 +91,6 @@
             50% { transform: scale(1.1); }
         }
 
-        
         #orientationWarning {
             display: none;
             position: fixed;
@@ -126,13 +128,15 @@
             constructor() {
                 this.gameArea = document.getElementById('gameArea');
                 this.bots = new Set();
+                this.items = new Set();
+                this.lastFrameTime = 0;
                 this.init();
             }
 
             init() {
                 this.createPlayer();
                 this.setupControls();
-                this.gameLoop();
+                requestAnimationFrame(this.gameLoop.bind(this));
                 this.botSpawner();
                 this.itemSpawner();
             }
@@ -142,8 +146,9 @@
                 this.playerStats = {
                     gold: 0,
                     level: 1,
-                    speed: 8,
-                    flowers: { thick: 0, thin: 0 }
+                    speed: 0.8,
+                    flowers: { thick: 0, thin: 0 },
+                    invincible: false
                 };
                 this.updateStatus();
             }
@@ -152,111 +157,130 @@
                 const entity = document.createElement('div');
                 entity.className = `entity ${className}`;
                 entity.style.width = entity.style.height = `${sizePercent}vw`;
-                entity.style.left = `${50 - sizePercent/2}%`;
-                entity.style.top = `${50 - sizePercent/2}%`;
+                entity.style.left = `${Math.random() * 80 + 10}%`;
+                entity.style.top = `${Math.random() * 80 + 10}%`;
                 this.gameArea.appendChild(entity);
                 return entity;
             }
 
             setupControls() {
                 let touchStartX = 0, touchStartY = 0;
+                let isTouching = false;
                 
                 this.gameArea.addEventListener('touchstart', e => {
+                    isTouching = true;
                     touchStartX = e.touches[0].clientX;
                     touchStartY = e.touches[0].clientY;
                 });
 
                 this.gameArea.addEventListener('touchmove', e => {
+                    if (!isTouching) return;
                     e.preventDefault();
+
                     const dx = e.touches[0].clientX - touchStartX;
                     const dy = e.touches[0].clientY - touchStartY;
                     
                     const rect = this.gameArea.getBoundingClientRect();
-                    const speedFactor = this.playerStats.speed / 100;
+                    const speed = this.playerStats.speed * (this.playerStats.flowers.thick > 0 ? 1.5 : 1);
                     
-                    const newX = parseFloat(this.player.style.left) + (dx / rect.width * 100 * speedFactor);
-                    const newY = parseFloat(this.player.style.top) + (dy / rect.height * 100 * speedFactor);
+                    const newX = this.clampPosition(
+                        parseFloat(this.player.style.left) + (dx / rect.width * 100 * speed),
+                        5, 85
+                    );
+                    const newY = this.clampPosition(
+                        parseFloat(this.player.style.top) + (dy / rect.height * 100 * speed),
+                        5, 85
+                    );
                     
-                    this.player.style.left = `${Math.max(0, Math.min(85, newX))}%`;
-                    this.player.style.top = `${Math.max(0, Math.min(85, newY))}%`;
+                    this.player.style.left = `${newX}%`;
+                    this.player.style.top = `${newY}%`;
                     
                     touchStartX = e.touches[0].clientX;
                     touchStartY = e.touches[0].clientY;
                 });
+
+                this.gameArea.addEventListener('touchend', () => isTouching = false);
             }
 
-            gameLoop() {
-                setInterval(() => {
-                    this.bots.forEach(bot => {
-                        const playerPos = this.getPosition(this.player);
-                        const botPos = this.getPosition(bot);
-                        
-                        // 高级AI行为
-                        const distance = Math.hypot(
-                            playerPos.x - botPos.x,
-                            playerPos.y - botPos.y
-                        );
-                        
-                        if (distance < 30) { // 追逐玩家
-                            const angle = Math.atan2(
-                                playerPos.y - botPos.y,
-                                playerPos.x - botPos.x
-                            );
-                            
-                            const speed = distance < 15 ? 0.3 : 0.15;
-                            bot.style.left = `${botPos.x + Math.cos(angle) * speed}%`;
-                            bot.style.top = `${botPos.y + Math.sin(angle) * speed}%`;
-                        } else { // 随机巡逻
-                            bot.style.left = `${botPos.x + (Math.random() - 0.5)}%`;
-                            bot.style.top = `${botPos.y + (Math.random() - 0.5)}%`;
-                        }
-                        
-                        // 边界限制
-                        bot.style.left = `${Math.max(5, Math.min(85, parseFloat(bot.style.left))}%`;
-                        bot.style.top = `${Math.max(5, Math.min(85, parseFloat(bot.style.top))}%`;
-                    });
+            gameLoop(timestamp) {
+                const deltaTime = timestamp - this.lastFrameTime;
+                this.lastFrameTime = timestamp;
+
+                // 更新所有实体
+                this.updateBots(deltaTime);
+                this.checkCollisions();
+                this.updateVisualEffects();
+
+                requestAnimationFrame(this.gameLoop.bind(this));
+            }
+
+            updateBots(deltaTime) {
+                const playerPos = this.getPosition(this.player);
+                
+                this.bots.forEach(bot => {
+                    const botPos = this.getPosition(bot);
+                    const distanceToPlayer = this.distance(playerPos, botPos);
                     
-                    this.checkCollisions();
-                }, 1000/60);
-            }
-
-            getPosition(element) {
-                return {
-                    x: parseFloat(element.style.left),
-                    y: parseFloat(element.style.top)
-                };
+                    // 智能行为：根据距离切换状态
+                    if (distanceToPlayer < 30) {
+                        // 追逐模式
+                        const angle = Math.atan2(
+                            playerPos.y - botPos.y,
+                            playerPos.x - botPos.x
+                        );
+                        const speed = distanceToPlayer < 15 ? 0.4 : 0.2;
+                        
+                        bot.style.left = `${this.clampPosition(
+                            botPos.x + Math.cos(angle) * speed * deltaTime/16,
+                            5, 85
+                        )}%`;
+                        bot.style.top = `${this.clampPosition(
+                            botPos.y + Math.sin(angle) * speed * deltaTime/16,
+                            5, 85
+                        )}%`;
+                    } else {
+                        // 巡逻模式
+                        bot.style.left = `${this.clampPosition(
+                            botPos.x + (Math.random() - 0.5) * 0.3 * deltaTime/16,
+                            5, 85
+                        )}%`;
+                        bot.style.top = `${this.clampPosition(
+                            botPos.y + (Math.random() - 0.5) * 0.3 * deltaTime/16,
+                            5, 85
+                        )}%`;
+                    }
+                });
             }
 
             checkCollisions() {
                 const playerPos = this.getPosition(this.player);
-                
-                // 检测金子碰撞
-                document.querySelectorAll('.gold').forEach(gold => {
-                    const goldPos = this.getPosition(gold);
-                    if (this.distance(playerPos, goldPos) < 12) {
-                        this.collectGold(gold);
-                    }
-                });
-                
-                // 检测道具碰撞
-                document.querySelectorAll('.flower').forEach(flower => {
-                    const flowerPos = this.getPosition(flower);
-                    if (this.distance(playerPos, flowerPos) < 15) {
-                        this.collectFlower(flower);
-                    }
-                });
-                
-                // 检测人机碰撞
-                this.bots.forEach(bot => {
-                    const botPos = this.getPosition(bot);
-                    if (this.distance(playerPos, botPos) < 13) {
-                        this.handleBotCollision(bot);
-                    }
-                });
-            }
+                const playerSize = parseFloat(this.player.style.width);
 
-            distance(pos1, pos2) {
-                return Math.hypot(pos1.x - pos2.x, pos1.y - pos2.y);
+                // 检测道具碰撞
+                document.querySelectorAll('.gold, .flower').forEach(item => {
+                    const itemPos = this.getPosition(item);
+                    const itemSize = parseFloat(item.style.width);
+                    
+                    if (this.distance(playerPos, itemPos) < (playerSize + itemSize)/2) {
+                        if (item.classList.contains('gold')) {
+                            this.collectGold(item);
+                        } else {
+                            this.collectFlower(item);
+                        }
+                    }
+                });
+
+                // 检测人机碰撞
+                if (!this.playerStats.invincible) {
+                    this.bots.forEach(bot => {
+                        const botPos = this.getPosition(bot);
+                        const botSize = parseFloat(bot.style.width);
+                        
+                        if (this.distance(playerPos, botPos) < (playerSize + botSize)/2) {
+                            this.handleBotCollision(bot);
+                        }
+                    });
+                }
             }
 
             collectGold(gold) {
@@ -264,17 +288,20 @@
                 gold.remove();
                 
                 if (this.playerStats.gold >= 30 && this.playerStats.level < 3) {
-                    this.playerStats.level = 3;
-                    this.player.className = 'entity player platinum';
-                    this.player.style.width = this.player.style.height = '18vw';
+                    this.levelUp(3);
                 } else if (this.playerStats.gold >= 10 && this.playerStats.level < 2) {
-                    this.playerStats.level = 2;
-                    this.player.className = 'entity player golden';
-                    this.player.style.width = this.player.style.height = '15vw';
+                    this.levelUp(2);
                 }
                 
                 this.updateStatus();
                 navigator.vibrate?.(50);
+            }
+
+            levelUp(newLevel) {
+                this.playerStats.level = newLevel;
+                const sizes = {1: 15, 2: 18, 3: 20};
+                this.player.style.width = this.player.style.height = `${sizes[newLevel]}vw`;
+                this.player.className = `entity player ${['silver', 'golden', 'platinum'][newLevel-1]}`;
             }
 
             collectFlower(flower) {
@@ -282,8 +309,10 @@
                 this.playerStats.flowers[type]++;
                 
                 if (type === 'thick') {
-                    this.playerStats.speed += 3;
-                    setTimeout(() => this.playerStats.speed -= 3, 5000);
+                    this.playerStats.speed += 0.3;
+                    setTimeout(() => {
+                        this.playerStats.speed -= 0.3;
+                    }, 5000);
                 } else {
                     this.bots.forEach(bot => {
                         bot.style.transform = 'scale(0.7)';
@@ -297,18 +326,32 @@
 
             handleBotCollision(bot) {
                 this.playerStats.gold = Math.max(0, this.playerStats.gold - 1);
+                this.playerStats.invincible = true;
+                
+                // 击退效果
+                const botPos = this.getPosition(bot);
+                const playerPos = this.getPosition(this.player);
+                const angle = Math.atan2(playerPos.y - botPos.y, playerPos.x - botPos.x);
+                
+                this.player.style.left = `${playerPos.x + Math.cos(angle) * 5}%`;
+                this.player.style.top = `${playerPos.y + Math.sin(angle) * 5}%`;
+                
+                // 无敌闪烁效果
+                this.player.style.opacity = '0.5';
+                setTimeout(() => {
+                    this.player.style.opacity = '1';
+                    this.playerStats.invincible = false;
+                }, 1000);
+                
                 this.updateStatus();
-                bot.style.transform = 'scale(1.2)';
-                setTimeout(() => bot.style.transform = '', 200);
                 navigator.vibrate?.(200);
             }
 
             botSpawner() {
                 setInterval(() => {
-                    if (this.bots.size < 3 + Math.floor(this.playerStats.gold / 10)) {
+                    const maxBots = 3 + Math.floor(this.playerStats.gold / 10);
+                    if (this.bots.size < maxBots) {
                         const bot = this.createEntity('bot', 12);
-                        bot.style.left = `${Math.random() * 80 + 5}%`;
-                        bot.style.top = `${Math.random() * 80 + 5}%`;
                         this.bots.add(bot);
                     }
                 }, 8000);
@@ -317,24 +360,38 @@
             itemSpawner() {
                 setInterval(() => {
                     const gold = this.createEntity('gold', 8);
-                    gold.style.left = `${Math.random() * 80 + 5}%`;
-                    gold.style.top = `${Math.random() * 80 + 5}%`;
                     if (Math.random() > 0.85) gold.classList.add('big');
                     setTimeout(() => gold.remove(), 5000);
                 }, 2000);
 
                 setInterval(() => {
                     const flower = this.createEntity(`flower ${Math.random() > 0.5 ? 'thick' : 'thin'}`, 10);
-                    flower.style.left = `${Math.random() * 80 + 5}%`;
-                    flower.style.top = `${Math.random() * 80 + 5}%`;
                     setTimeout(() => flower.remove(), 8000);
                 }, 5000);
             }
 
+            getPosition(element) {
+                return {
+                    x: parseFloat(element.style.left),
+                    y: parseFloat(element.style.top)
+                };
+            }
+
+            distance(pos1, pos2) {
+                return Math.hypot(pos1.x - pos2.x, pos1.y - pos2.y);
+            }
+
+            clampPosition(value, min, max) {
+                return Math.max(min, Math.min(max, value));
+            }
+
+            updateVisualEffects() {
+                this.player.style.filter = `drop-shadow(0 0 ${this.playerStats.level * 3}px rgba(255,215,0,0.3))`;
+            }
+
             updateStatus() {
                 document.getElementById('goldCount').textContent = this.playerStats.gold;
-                document.getElementById('level').textContent = 
-                    ['银强', '金强', '铂金'][this.playerStats.level - 1];
+                document.getElementById('level').textContent = ['银强', '金强', '铂金'][this.playerStats.level - 1];
                 document.getElementById('flowerThick').textContent = this.playerStats.flowers.thick;
                 document.getElementById('flowerThin').textContent = this.playerStats.flowers.thin;
             }
