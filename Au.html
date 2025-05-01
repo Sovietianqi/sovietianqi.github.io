@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Big Bird传奇之AU的奇妙之旅</title>
+    <style>
+        #gameArea {
+            width: 800px;
+            height: 600px;
+            border: 2px solid black;
+            position: relative;
+            background: #e0f0ff;
+        }
+        .player {
+            width: 30px;
+            height: 30px;
+            position: absolute;
+            transition: 0.1s;
+        }
+        .gold {
+            width: 15px;
+            height: 15px;
+            background: gold;
+            position: absolute;
+            border-radius: 50%;
+        }
+        .bot {
+            width: 25px;
+            height: 25px;
+            background: #666;
+            position: absolute;
+        }
+        .flower-thick {
+            width: 20px;
+            height: 20px;
+            background: #ff1493;
+            position: absolute;
+        }
+        .flower-thin {
+            width: 20px;
+            height: 20px;
+            background: #ff69b4;
+            position: absolute;
+        }
+        #status {
+            margin: 10px;
+            font-family: Arial;
+        }
+    </style>
+</head>
+<body>
+    <div id="status">
+        金币：<span id="goldCount">0</span> | 
+        等级：<span id="level">银强</span> | 
+        厚艳花：<span id="flowerThick">0</span> | 
+        薄艳花：<span id="flowerThin">0</span>
+    </div>
+    <div id="gameArea"></div>
+
+    <script>
+        const player = document.createElement('div');
+        player.className = 'player';
+        player.style.backgroundColor = '#c0c0c0';
+        player.style.left = '400px';
+        player.style.top = '300px';
+        document.getElementById('gameArea').appendChild(player);
+
+        let goldCount = 0;
+        let flowerThick = 0;
+        let flowerThin = 0;
+        let playerSpeed = 5;
+        let level = 1;
+        
+        // 创建人机
+        const bot = document.createElement('div');
+        bot.className = 'bot';
+        bot.style.left = '100px';
+        bot.style.top = '100px';
+        document.getElementById('gameArea').appendChild(bot);
+
+        // 生成金子
+        function spawnGold() {
+            const gold = document.createElement('div');
+            gold.className = 'gold';
+            gold.style.left = Math.random()*770 + 'px';
+            gold.style.top = Math.random()*570 + 'px';
+            gold.dataset.value = Math.random() > 0.8 ? 3 : 1; // 20%概率生成大金子
+            if(gold.dataset.value > 1) gold.style.width = gold.style.height = '25px';
+            
+            gold.addEventListener('click', collectGold);
+            document.getElementById('gameArea').appendChild(gold);
+            setTimeout(() => gold.remove(), 5000);
+        }
+
+        // 生成花朵道具
+        function spawnFlower() {
+            const flower = document.createElement('div');
+            flower.className = Math.random() > 0.5 ? 'flower-thick' : 'flower-thin';
+            flower.style.left = Math.random()*770 + 'px';
+            flower.style.top = Math.random()*570 + 'px';
+            
+            flower.addEventListener('click', collectFlower);
+            document.getElementById('gameArea').appendChild(flower);
+            setTimeout(() => flower.remove(), 8000);
+        }
+
+        function collectGold(e) {
+            goldCount += parseInt(e.target.dataset.value);
+            document.getElementById('goldCount').textContent = goldCount;
+            e.target.remove();
+            
+            // 升级系统
+            if(goldCount >= 30 && level < 3) {
+                level = 3;
+                player.style.backgroundColor = '#e5e4e2';
+                player.style.width = player.style.height = '40px';
+            } else if(goldCount >= 10 && level < 2) {
+                level = 2;
+                player.style.backgroundColor = 'gold';
+                player.style.width = player.style.height = '35px';
+            }
+        }
+
+        function collectFlower(e) {
+            if(e.target.className.includes('thick')) {
+                flowerThick++;
+                playerSpeed += 2;
+                setTimeout(() => playerSpeed -= 2, 5000);
+            } else {
+                flowerThin++;
+                const bots = document.querySelectorAll('.bot');
+                bots.forEach(b => b.style.transform = `scale(0.8)`);
+                setTimeout(() => bots.forEach(b => b.style.transform = ``), 5000);
+            }
+            updateStatus();
+            e.target.remove();
+        }
+
+        function updateStatus() {
+            document.getElementById('flowerThick').textContent = flowerThick;
+            document.getElementById('flowerThin').textContent = flowerThin;
+            document.getElementById('level').textContent = 
+                ['银强', '金强', '铂金'][level-1];
+        }
+
+        // 玩家控制
+        document.addEventListener('keydown', (e) => {
+            const rect = player.getBoundingClientRect();
+            switch(e.key.toLowerCase()) {
+                case 'w': case 'arrowup':
+                    player.style.top = Math.max(0, rect.top - playerSpeed) + 'px';
+                  
