@@ -1,184 +1,255 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Big Bird传奇之AU的奇妙之旅</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            touch-action: none;
+        }
+
+        body {
+            background: #f0f8ff;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        #status {
+            padding: 10px;
+            font-family: Arial;
+            font-size: 14px;
+            background: rgba(255, 255, 255, 0.9);
+            display: flex;
+            justify-content: space-around;
+        }
+
         #gameArea {
-            width: 800px;
-            height: 600px;
-            border: 2px solid black;
+            flex: 1;
             position: relative;
             background: #e0f0ff;
+            touch-action: none;
         }
+
         .player {
-            width: 30px;
-            height: 30px;
             position: absolute;
-            transition: 0.1s;
+            transition: transform 0.1s;
+            image-rendering: pixelated;
         }
+
+        .silver { background: #c0c0c0; }
+        .golden { background: #ffd700; }
+        .platinum { background: #e5e4e2; }
+
         .gold {
-            width: 15px;
-            height: 15px;
+            width: 5vw;
+            height: 5vw;
             background: gold;
             position: absolute;
             border-radius: 50%;
+            animation: pulse 1s infinite;
         }
+
         .bot {
-            width: 25px;
-            height: 25px;
+            width: 6vw;
+            height: 6vw;
             background: #666;
             position: absolute;
+            border-radius: 50%;
+            transition: all 0.3s;
         }
-        .flower-thick {
-            width: 20px;
-            height: 20px;
-            background: #ff1493;
+
+        .flower {
+            width: 6vw;
+            height: 6vw;
             position: absolute;
+            background-size: contain;
         }
-        .flower-thin {
-            width: 20px;
-            height: 20px;
-            background: #ff69b4;
-            position: absolute;
+
+        .thick { background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="45" fill="%23ff1493"/></svg>'); }
+        .thin { background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="30" fill="%23ff69b4"/></svg>'); }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
         }
-        #status {
-            margin: 10px;
-            font-family: Arial;
+
+        #orientationWarning {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            color: white;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            text-align: center;
+        }
+
+        @media (orientation: portrait) {
+            #orientationWarning {
+                display: flex;
+            }
         }
     </style>
 </head>
 <body>
     <div id="status">
-        金币：<span id="goldCount">0</span> | 
-        等级：<span id="level">银强</span> | 
-        厚艳花：<span id="flowerThick">0</span> | 
-        薄艳花：<span id="flowerThin">0</span>
+        <div>💰<span id="goldCount">0</span></div>
+        <div>⚔️<span id="level">银强</span></div>
+        <div>🌺<span id="flowerThick">0</span></div>
+        <div>🌸<span id="flowerThin">0</span></div>
     </div>
     <div id="gameArea"></div>
+    <div id="orientationWarning">请横屏游戏以获得最佳体验</div>
 
     <script>
         const player = document.createElement('div');
-        player.className = 'player';
-        player.style.backgroundColor = '#c0c0c0';
-        player.style.left = '400px';
-        player.style.top = '300px';
-        document.getElementById('gameArea').appendChild(player);
-
-        let goldCount = 0;
-        let flowerThick = 0;
-        let flowerThin = 0;
-        let playerSpeed = 5;
-        let level = 1;
+        player.className = 'player silver';
+        const gameArea = document.getElementById('gameArea');
         
-        // 创建人机
-        const bot = document.createElement('div');
-        bot.className = 'bot';
-        bot.style.left = '100px';
-        bot.style.top = '100px';
-        document.getElementById('gameArea').appendChild(bot);
+        // 初始化游戏参数
+        let goldCount = 0, flowerThick = 0, flowerThin = 0;
+        let playerSpeed = 8, level = 1;
+        let touchStartX = 0, touchStartY = 0;
+        let isTouching = false;
 
-        // 生成金子
-        function spawnGold() {
-            const gold = document.createElement('div');
-            gold.className = 'gold';
-            gold.style.left = Math.random()*770 + 'px';
-            gold.style.top = Math.random()*570 + 'px';
-            gold.dataset.value = Math.random() > 0.8 ? 3 : 1; // 20%概率生成大金子
-            if(gold.dataset.value > 1) gold.style.width = gold.style.height = '25px';
-            
-            gold.addEventListener('click', collectGold);
-            document.getElementById('gameArea').appendChild(gold);
-            setTimeout(() => gold.remove(), 5000);
+        // 初始化玩家位置
+        function initPlayer() {
+            player.style.width = player.style.height = '8vw';
+            player.style.left = '45%';
+            player.style.top = '45%';
+            gameArea.appendChild(player);
         }
 
-        // 生成花朵道具
-        function spawnFlower() {
-            const flower = document.createElement('div');
-            flower.className = Math.random() > 0.5 ? 'flower-thick' : 'flower-thin';
-            flower.style.left = Math.random()*770 + 'px';
-            flower.style.top = Math.random()*570 + 'px';
+        // 触控事件处理
+        gameArea.addEventListener('touchstart', (e) => {
+            isTouching = true;
+            touchStartX = e.touches[0].clientX;
+            touchStartY = e.touches[0].clientY;
+        });
+
+        gameArea.addEventListener('touchmove', (e) => {
+            if (!isTouching) return;
+            e.preventDefault();
             
-            flower.addEventListener('click', collectFlower);
-            document.getElementById('gameArea').appendChild(flower);
-            setTimeout(() => flower.remove(), 8000);
+            const deltaX = e.touches[0].clientX - touchStartX;
+            const deltaY = e.touches[0].clientY - touchStartY;
+            
+            const rect = gameArea.getBoundingClientRect();
+            let newX = parseFloat(player.style.left) + (deltaX / rect.width * 100);
+            let newY = parseFloat(player.style.top) + (deltaY / rect.height * 100);
+            
+            player.style.left = Math.max(0, Math.min(92, newX)) + '%';
+            player.style.top = Math.max(0, Math.min(92, newY)) + '%';
+            
+            touchStartX = e.touches[0].clientX;
+            touchStartY = e.touches[0].clientY;
+        });
+
+        gameArea.addEventListener('touchend', () => isTouching = false);
+
+        // 生成游戏元素
+        function spawnElement(className, clickHandler) {
+            const elem = document.createElement('div');
+            elem.className = className;
+            elem.style.left = Math.random() * 92 + '%';
+            elem.style.top = Math.random() * 92 + '%';
+            elem.addEventListener('click', clickHandler);
+            gameArea.appendChild(elem);
+            setTimeout(() => elem.remove(), 5000);
         }
 
+        // 收集金子
         function collectGold(e) {
-            goldCount += parseInt(e.target.dataset.value);
+            goldCount += e.target.classList.contains('big') ? 3 : 1;
             document.getElementById('goldCount').textContent = goldCount;
             e.target.remove();
             
-            // 升级系统
-            if(goldCount >= 30 && level < 3) {
+            if (goldCount >= 30 && level < 3) {
                 level = 3;
-                player.style.backgroundColor = '#e5e4e2';
-                player.style.width = player.style.height = '40px';
-            } else if(goldCount >= 10 && level < 2) {
+                player.className = 'player platinum';
+                player.style.width = player.style.height = '12vw';
+            } else if (goldCount >= 10 && level < 2) {
                 level = 2;
-                player.style.backgroundColor = 'gold';
-                player.style.width = player.style.height = '35px';
+                player.className = 'player golden';
+                player.style.width = player.style.height = '10vw';
             }
+            document.getElementById('level').textContent = ['银强', '金强', '铂金'][level-1];
+            
+            // 震动反馈
+            navigator.vibrate?.(50);
         }
 
+        // 收集花朵
         function collectFlower(e) {
-            if(e.target.className.includes('thick')) {
+            if (e.target.classList.contains('thick')) {
                 flowerThick++;
-                playerSpeed += 2;
-                setTimeout(() => playerSpeed -= 2, 5000);
+                playerSpeed += 3;
+                setTimeout(() => playerSpeed -= 3, 5000);
             } else {
                 flowerThin++;
-                const bots = document.querySelectorAll('.bot');
-                bots.forEach(b => b.style.transform = `scale(0.8)`);
-                setTimeout(() => bots.forEach(b => b.style.transform = ``), 5000);
+                document.querySelectorAll('.bot').forEach(bot => {
+                    bot.style.transform = 'scale(0.7)';
+                    setTimeout(() => bot.style.transform = '', 5000);
+                });
             }
-            updateStatus();
+            document.getElementById('flowerThick').textContent = flowerThick;
+            document.getElementById('flowerThin').textContent = flowerThin;
             e.target.remove();
         }
 
-        function updateStatus() {
-            document.getElementById('flowerThick').textContent = flowerThick;
-            document.getElementById('flowerThin').textContent = flowerThin;
-            document.getElementById('level').textContent = 
-                ['银强', '金强', '铂金'][level-1];
+        // 人机AI
+        function botAI() {
+            document.querySelectorAll('.bot').forEach(bot => {
+                const dx = Math.random() * 40 - 20;
+                const dy = Math.random() * 40 - 20;
+                const newX = Math.max(0, Math.min(92, parseFloat(bot.style.left) + dx));
+                const newY = Math.max(0, Math.min(92, parseFloat(bot.style.top) + dy));
+                bot.style.left = newX + '%';
+                bot.style.top = newY + '%';
+            });
         }
 
-        // 玩家控制
-        document.addEventListener('keydown', (e) => {
-            const rect = player.getBoundingClientRect();
-            switch(e.key.toLowerCase()) {
-                case 'w': case 'arrowup':
-                    player.style.top = Math.max(0, rect.top - playerSpeed) + 'px';
-                    break;
-                case 's': case 'arrowdown':
-                    player.style.top = Math.min(570, rect.top + playerSpeed) + 'px';
-                    break;
-                case 'a': case 'arrowleft':
-                    player.style.left = Math.max(0, rect.left - playerSpeed) + 'px';
-                    break;
-                case 'd': case 'arrowright':
-                    player.style.left = Math.min(770, rect.left + playerSpeed) + 'px';
-                    break;
-            }
-        });
-
-        // 人机AI
-        setInterval(() => {
-            const botRect = bot.getBoundingClientRect();
-            const playerRect = player.getBoundingClientRect();
+        // 游戏初始化
+        function initGame() {
+            initPlayer();
             
-            const dx = playerRect.left - botRect.left;
-            const dy = playerRect.top - botRect.top;
-            const distance = Math.sqrt(dx*dx + dy*dy);
-            
-            if(distance > 100) {
-                bot.style.left = botRect.left + (Math.random()-0.5)*20 + 'px';
-                bot.style.top = botRect.top + (Math.random()-0.5)*20 + 'px';
-            }
-        }, 1000);
+            // 生成初始元素
+            setInterval(() => {
+                spawnElement('gold' + (Math.random() > 0.8 ? ' big' : ''), collectGold);
+            }, 2000);
 
-        // 游戏循环
-        setInterval(spawnGold, 2000);
-        setInterval(spawnFlower, 5000);
+            setInterval(() => {
+                spawnElement('flower ' + (Math.random() > 0.5 ? 'thick' : 'thin'), collectFlower);
+            }, 5000);
+
+            // 添加人机
+            setInterval(() => {
+                if(document.querySelectorAll('.bot').length < 3) {
+                    const bot = document.createElement('div');
+                    bot.className = 'bot';
+                    bot.style.left = Math.random() * 92 + '%';
+                    bot.style.top = Math.random() * 92 + '%';
+                    gameArea.appendChild(bot);
+                }
+            }, 8000);
+
+            // 游戏循环
+            setInterval(botAI, 1000);
+        }
+
+        // 启动游戏
+        initGame();
     </script>
 </body>
 </html>
